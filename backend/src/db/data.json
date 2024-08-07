@@ -1,0 +1,783 @@
+[
+  {
+    "id": 1,
+    "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+    "price": 109.95,
+    "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+    "category": "men's clothing",
+    "images": ["https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"],
+    "rating": 3.9,
+    "stock": 2,
+    "discountPercentage": 30
+  },
+  {
+    "id": 2,
+    "title": "Mens Casual Premium Slim Fit T-Shirts",
+    "price": 22.3,
+    "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+    "category": "men's clothing",
+    "images": [
+      "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
+    ],
+    "rating": 4.1,
+    "stock": 3,
+    "discountPercentage": 25
+  },
+  {
+    "id": 3,
+    "title": "Mens Cotton Jacket",
+    "price": 55.99,
+    "description": "Great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
+    "category": "men's clothing",
+    "images": ["https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg"],
+    "rating": 4.7,
+    "stock": 2,
+    "discountPercentage": 40
+  },
+  {
+    "id": 4,
+    "title": "Mens Casual Slim Fit",
+    "price": 15.99,
+    "description": "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
+    "category": "men's clothing",
+    "images": ["https://fakestoreapi.com/img/71-RlPDo4JL._AC_SY679_.jpg"],
+    "rating": 4.3,
+    "stock": 5,
+    "discountPercentage": 20
+  },
+  {
+    "id": 5,
+    "title": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
+    "price": 695,
+    "description": "From our Legends Collection, the Naga was inspired by the mythical dragon that protects the wearer from danger. Handcrafted in a variety of styles, you can choose the one that fits your mood.",
+    "category": "jewelery",
+    "images": [
+      "https://fakestoreapi.com/img/71whUUDv0cL._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.6,
+    "stock": 8,
+    "discountPercentage": 35
+  },
+  {
+    "id": 6,
+    "title": "Solid Gold Petite Micropave ",
+    "price": 168,
+    "description": "This delicate ring features a micropave setting that sparkles with every movement. A timeless classic that's perfect for daily wear or as a special gift.",
+    "category": "jewelery",
+    "images": [
+      "https://fakestoreapi.com/img/71M3gZ07sJL._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.5,
+    "stock": 22,
+    "discountPercentage": 20
+  },
+  {
+    "id": 7,
+    "title": "White Gold Plated Princess",
+    "price": 9.99,
+    "description": "Elegance meets affordability with this white gold plated princess ring. A classic piece that adds a touch of sophistication to any outfit.",
+    "category": "jewelery",
+    "images": [
+      "https://fakestoreapi.com/img/71GArDObxLL._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.4,
+    "stock": 6,
+    "discountPercentage": 50
+  },
+  {
+    "id": 8,
+    "title": "Pierced Owl Rose Gold Plated Stainless Steel",
+    "price": 10.99,
+    "description": "Stylish and durable, this rose gold plated stainless steel jewelry piece is perfect for adding a pop of color to your wardrobe.",
+    "category": "jewelery",
+    "images": [
+      "https://fakestoreapi.com/img/71Z3KylqB8L._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.3,
+    "stock": 10,
+    "discountPercentage": 15
+  },
+  {
+    "id": 9,
+    "title": "WD 2TB Elements Portable External Hard Drive - USB 3.0",
+    "price": 64,
+    "description": "The WD Elements Portable Hard Drive is an easy-to-use, high-capacity storage solution for all your digital files.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/71sTOkVz8wL._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.8,
+    "stock": 4,
+    "discountPercentage": 10
+  },
+  {
+    "id": 10,
+    "title": "SanDisk SSD PLUS 1TB - SATA III 6 Gb/s",
+    "price": 109.95,
+    "description": "Boost your PC's performance with the SanDisk SSD PLUS, featuring reliable performance and ample storage space.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/71axUE2-p-L._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.9,
+    "stock": 12,
+    "discountPercentage": 25
+  },
+  {
+    "id": 11,
+    "title": "Samsung 32' Curved Monitor - 1080p",
+    "price": 299.99,
+    "description": "Experience immersive viewing with the Samsung 32' Curved Monitor. Featuring a Full HD resolution and sleek design, it's perfect for work or play.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/71jA4DsyqRL._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.7,
+    "stock": 6,
+    "discountPercentage": 30
+  },
+  {
+    "id": 12,
+    "title": "Apple iPhone 11 Pro Max - 256GB",
+    "price": 1099.99,
+    "description": "The Apple iPhone 11 Pro Max offers a powerful performance with its A13 Bionic chip, triple-camera system, and 256GB storage.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/71FjYlJ79LL._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.6,
+    "stock": 11,
+    "discountPercentage": 15
+  },
+  {
+    "id": 13,
+    "title": "MacBook Pro 16-inch - 512GB SSD",
+    "price": 2399.99,
+    "description": "The MacBook Pro 16-inch features an immersive Retina display, powerful performance with Intel Core i9, and ample storage for all your needs.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/81K5hyIoJ-L._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.8,
+    "stock": 12,
+    "discountPercentage": 20
+  },
+  {
+    "id": 14,
+    "title": "Bose QuietComfort 35 II Wireless Bluetooth Headphones",
+    "price": 299.99,
+    "description": "Experience superior sound quality and active noise cancellation with Bose QuietComfort 35 II headphones. Perfect for travel and daily use.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/81O3sfww8hL._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.9,
+    "stock": 2,
+    "discountPercentage": 10
+  },
+  {
+    "id": 15,
+    "title": "Logitech MX Master 3 Wireless Mouse",
+    "price": 99.99,
+    "description": "The Logitech MX Master 3 is a high-performance wireless mouse designed for productivity and comfort. It features customizable buttons and a rechargeable battery.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/71ODuJ8J4-L._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.6,
+    "stock": 2,
+    "discountPercentage": 15
+  },
+  {
+    "id": 16,
+    "title": "Canon EOS R5 Mirrorless Camera",
+    "price": 3899.99,
+    "description": "The Canon EOS R5 offers stunning 45MP resolution and advanced features for professional photography. Ideal for capturing high-quality images and videos.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/81AljOskCrL._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.7,
+    "stock": 1,
+    "discountPercentage": 5
+  },
+  {
+    "id": 17,
+    "title": "Nikon Z7 II Mirrorless Camera",
+    "price": 2999.99,
+    "description": "The Nikon Z7 II is a versatile mirrorless camera with 45.7MP resolution and enhanced autofocus performance, perfect for both photography and videography.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/71B-cpdi8AL._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.5,
+    "stock": 3,
+    "discountPercentage": 10
+  },
+  {
+    "id": 18,
+    "title": "GoPro HERO10 Black - Action Camera",
+    "price": 499.99,
+    "description": "The GoPro HERO10 Black offers rugged durability and stunning 5.3K video resolution. Ideal for capturing your adventures in high definition.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/81B-J7jgl-L._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.8,
+    "stock": 4,
+    "discountPercentage": 20
+  },
+  {
+    "id": 19,
+    "title": "Sony WH-1000XM4 Wireless Noise Cancelling Headphones",
+    "price": 349.99,
+    "description": "Enjoy superior sound and noise cancellation with the Sony WH-1000XM4. Features include voice assistant compatibility and long battery life.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/81O5PvJvSNL._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.9,
+    "stock": 3,
+    "discountPercentage": 15
+  },
+  {
+    "id": 20,
+    "title": "Samsung Galaxy S21 Ultra 5G - 128GB",
+    "price": 1199.99,
+    "description": "The Samsung Galaxy S21 Ultra 5G features a stunning display, powerful camera system, and 128GB of storage. A top choice for premium smartphones.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/71-BK6UEpYL._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.7,
+    "stock": 7,
+    "discountPercentage": 10
+  },
+  {
+    "id": 21,
+    "title": "Apple Watch Series 7 - GPS + Cellular",
+    "price": 749.99,
+    "description": "Stay connected with the Apple Watch Series 7. Features include a larger display, faster charging, and comprehensive health tracking.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/71HRuTWJWJL._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.6,
+    "stock": 1,
+    "discountPercentage": 25
+  },
+  {
+    "id": 22,
+    "title": "Sony A7R IV Full-Frame Mirrorless Camera",
+    "price": 3499.99,
+    "description": "The Sony A7R IV offers a high-resolution 61MP sensor and advanced autofocus features. Ideal for professional photographers.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/71qzQJ0HWsL._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.8,
+    "stock": 9,
+    "discountPercentage": 15
+  },
+  {
+    "id": 23,
+    "title": "Razer DeathAdder V2 - Wired Gaming Mouse",
+    "price": 79.99,
+    "description": "The Razer DeathAdder V2 is a high-performance wired gaming mouse with Speedflex cable and Focus+ Optical Sensor.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/71-0GbLfn3L._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.7,
+    "stock": 2,
+    "discountPercentage": 20
+  },
+  {
+    "id": 24,
+    "title": "HP Spectre x360 13t - Convertible Laptop",
+    "price": 1299.99,
+    "description": "The HP Spectre x360 13t offers a 2-in-1 convertible design, powerful performance, and a stunning 4K display.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/71gt9yG1iLL._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.6,
+    "stock": 9,
+    "discountPercentage": 10
+  },
+  {
+    "id": 25,
+    "title": "JBL Xtreme 3 Portable Bluetooth Speaker",
+    "price": 349.99,
+    "description": "The JBL Xtreme 3 delivers powerful sound and deep bass with long battery life. Perfect for outdoor adventures.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/71-C8mZTqXL._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.7,
+    "stock": 8,
+    "discountPercentage": 15
+  },
+  {
+    "id": 26,
+    "title": "Apple iPad Pro 12.9-inch - 256GB",
+    "price": 1099.99,
+    "description": "The iPad Pro 12.9-inch features a powerful M1 chip, ProMotion display, and ample storage, making it perfect for professionals and creatives.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/71J8guV4I-L._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.8,
+    "stock": 10,
+    "discountPercentage": 20
+  },
+  {
+    "id": 27,
+    "title": "Dell XPS 15 - 512GB SSD Laptop",
+    "price": 1599.99,
+    "description": "The Dell XPS 15 combines high performance with a sleek design and a beautiful 15.6-inch InfinityEdge display.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/71HoB9TXuDL._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.6,
+    "stock": 13,
+    "discountPercentage": 10
+  },
+  {
+    "id": 28,
+    "title": "Oculus Quest 2 - Advanced All-In-One VR Headset",
+    "price": 399.99,
+    "description": "The Oculus Quest 2 offers immersive VR experiences with advanced tracking, high-resolution display, and built-in audio.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/71XY2nL-K8L._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.9,
+    "stock": 9,
+    "discountPercentage": 15
+  },
+  {
+    "id": 29,
+    "title": "Sony WH-1000XM4 Wireless Noise Cancelling Headphones",
+    "price": 349.99,
+    "description": "Enjoy superior sound and noise cancellation with the Sony WH-1000XM4. Features include voice assistant compatibility and long battery life.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/71-HG4-VivL._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.8,
+    "stock": 5,
+    "discountPercentage": 10
+  },
+  {
+    "id": 30,
+    "title": "Microsoft Surface Laptop 4 - 15-inch",
+    "price": 1599.99,
+    "description": "The Microsoft Surface Laptop 4 offers a sleek design, high performance, and a stunning 15-inch PixelSense touchscreen display.",
+    "category": "electronics",
+    "images": [
+      "https://fakestoreapi.com/img/71AKXBZ2-QL._AC_UL640_QL65_ML3_.jpg"
+    ],
+    "rating": 4.7,
+    "stock": 4,
+    "discountPercentage": 20
+  },
+  {
+    "id": 32,
+    "title": "Essence Mascara Lash Princess",
+    "description": "The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.",
+    "price": 9.99,
+    "category": "beauty",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png"
+    ],
+    "rating": 4.94,
+    "discountPercentage": 7.17,
+    "stock": 12
+  },
+  {
+    "id": 33,
+    "title": "Eyeshadow Palette with Mirror",
+    "description": "The Eyeshadow Palette with Mirror offers a versatile range of eyeshadow shades for creating stunning eye looks. With a built-in mirror, it's convenient for on-the-go makeup application.",
+    "price": 19.99,
+    "category": "beauty",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png"
+    ],
+    "rating": 3.28,
+    "discountPercentage": 5.5,
+    "stock": 18
+  },
+  {
+    "id": 34,
+    "title": "Powder Canister",
+    "description": "The Powder Canister is a finely milled setting powder designed to set makeup and control shine. With a lightweight and translucent formula, it provides a smooth and matte finish.",
+    "price": 14.99,
+    "category": "beauty",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/beauty/Powder%20Canister/1.png"
+    ],
+    "rating": 3.82,
+    "discountPercentage": 18.14,
+    "stock": 21
+  },
+  {
+    "id": 35,
+    "title": "Red Lipstick",
+    "description": "The Red Lipstick is a classic and bold choice for adding a pop of color to your lips. With a creamy and pigmented formula, it provides a vibrant and long-lasting finish.",
+    "price": 12.99,
+    "category": "beauty",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/beauty/Red%20Lipstick/1.png"
+    ],
+    "rating": 2.51,
+    "discountPercentage": 19.03,
+    "stock": 9
+  },
+  {
+    "id": 36,
+    "title": "Red Nail Polish",
+    "description": "The Red Nail Polish offers a rich and glossy red hue for vibrant and polished nails. With a quick-drying formula, it provides a salon-quality finish at home.",
+    "price": 8.99,
+    "category": "beauty",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/beauty/Red%20Nail%20Polish/1.png"
+    ],
+    "rating": 3.91,
+    "discountPercentage": 2.46,
+    "stock": 16
+  },
+  {
+    "id": 37,
+    "title": "Calvin Klein CK One",
+    "description": "CK One by Calvin Klein is a classic unisex fragrance, known for its fresh and clean scent. It's a versatile fragrance suitable for everyday wear.",
+    "price": 49.99,
+    "category": "fragrances",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/fragrances/Calvin%20Klein%20CK%20One/1.png",
+      "https://cdn.dummyjson.com/products/images/fragrances/Calvin%20Klein%20CK%20One/2.png",
+      "https://cdn.dummyjson.com/products/images/fragrances/Calvin%20Klein%20CK%20One/3.png"
+    ],
+    "rating": 4.85,
+    "discountPercentage": 0.32,
+    "stock": 7
+  },
+  {
+    "id": 38,
+    "title": "Chanel Coco Noir Eau De",
+    "description": "Coco Noir by Chanel is an elegant and mysterious fragrance, featuring notes of grapefruit, rose, and sandalwood. Perfect for evening occasions.",
+    "price": 129.99,
+    "category": "fragrances",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/fragrances/Chanel%20Coco%20Noir%20Eau%20De/1.png",
+      "https://cdn.dummyjson.com/products/images/fragrances/Chanel%20Coco%20Noir%20Eau%20De/2.png",
+      "https://cdn.dummyjson.com/products/images/fragrances/Chanel%20Coco%20Noir%20Eau%20De/3.png"
+    ],
+    "rating": 2.76,
+    "discountPercentage": 18.64,
+    "stock": 22
+  },
+  {
+    "id": 39,
+    "title": "Dior J'adore",
+    "description": "J'adore by Dior is a luxurious and floral fragrance, known for its blend of ylang-ylang, rose, and jasmine. It embodies femininity and sophistication.",
+    "price": 89.99,
+    "category": "fragrances",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/fragrances/Dior%20J'adore/1.png",
+      "https://cdn.dummyjson.com/products/images/fragrances/Dior%20J'adore/2.png",
+      "https://cdn.dummyjson.com/products/images/fragrances/Dior%20J'adore/3.png"
+    ],
+    "rating": 3.31,
+    "discountPercentage": 17.44,
+    "stock": 13
+  },
+  {
+    "id": 40,
+    "title": "Dolce Shine Eau de",
+    "description": "Dolce Shine by Dolce & Gabbana is a vibrant and fruity fragrance, featuring notes of mango, jasmine, and blonde woods. It's a joyful and youthful scent.",
+    "price": 69.99,
+    "category": "fragrances",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/fragrances/Dolce%20Shine%20Eau%20de/1.png",
+      "https://cdn.dummyjson.com/products/images/fragrances/Dolce%20Shine%20Eau%20de/2.png",
+      "https://cdn.dummyjson.com/products/images/fragrances/Dolce%20Shine%20Eau%20de/3.png"
+    ],
+    "rating": 2.68,
+    "discountPercentage": 11.47,
+    "stock": 23
+  },
+  {
+    "id": 41,
+    "title": "Gucci Bloom Eau de",
+    "description": "Gucci Bloom by Gucci is a floral and captivating fragrance, with notes of tuberose, jasmine, and Rangoon creeper. It's a modern and romantic scent.",
+    "price": 79.99,
+    "category": "fragrances",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/fragrances/Gucci%20Bloom%20Eau%20de/1.png",
+      "https://cdn.dummyjson.com/products/images/fragrances/Gucci%20Bloom%20Eau%20de/2.png",
+      "https://cdn.dummyjson.com/products/images/fragrances/Gucci%20Bloom%20Eau%20de/3.png"
+    ],
+    "rating": 2.69,
+    "discountPercentage": 8.9,
+    "stock": 5
+  },
+  {
+    "id": 42,
+    "title": "Annibale Colombo Bed",
+    "description": "The Annibale Colombo Bed is a luxurious and elegant bed frame, crafted with high-quality materials for a comfortable and stylish bedroom.",
+    "price": 1899.99,
+    "category": "furniture",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/furniture/Annibale%20Colombo%20Bed/1.png",
+      "https://cdn.dummyjson.com/products/images/furniture/Annibale%20Colombo%20Bed/2.png",
+      "https://cdn.dummyjson.com/products/images/furniture/Annibale%20Colombo%20Bed/3.png"
+    ],
+    "rating": 4.14,
+    "discountPercentage": 0.29,
+    "stock": 11
+  },
+  {
+    "id": 43,
+    "title": "Annibale Colombo Sofa",
+    "description": "The Annibale Colombo Sofa is a sophisticated and comfortable seating option, featuring exquisite design and premium upholstery for your living room.",
+    "price": 2499.99,
+    "category": "furniture",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/furniture/Annibale%20Colombo%20Sofa/1.png",
+      "https://cdn.dummyjson.com/products/images/furniture/Annibale%20Colombo%20Sofa/2.png",
+      "https://cdn.dummyjson.com/products/images/furniture/Annibale%20Colombo%20Sofa/3.png"
+    ],
+    "rating": 2.38,
+    "discountPercentage": 13.28,
+    "stock": 6
+  },
+  {
+    "id": 44,
+    "title": "Desk with Storage",
+    "description": "The Desk with Storage is a functional and stylish workspace solution, featuring ample storage and a sleek design for an organized and productive office.",
+    "price": 599.99,
+    "category": "furniture",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/furniture/Desk%20with%20Storage/1.png",
+      "https://cdn.dummyjson.com/products/images/furniture/Desk%20with%20Storage/2.png",
+      "https://cdn.dummyjson.com/products/images/furniture/Desk%20with%20Storage/3.png"
+    ],
+    "rating": 3.94,
+    "discountPercentage": 9.56,
+    "stock": 20
+  },
+  {
+    "id": 45,
+    "title": "Sofa Chair",
+    "description": "The Sofa Chair is a cozy and stylish addition to any living space, providing comfort and elegance with its plush cushions and modern design.",
+    "price": 399.99,
+    "category": "furniture",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/furniture/Sofa%20Chair/1.png",
+      "https://cdn.dummyjson.com/products/images/furniture/Sofa%20Chair/2.png",
+      "https://cdn.dummyjson.com/products/images/furniture/Sofa%20Chair/3.png"
+    ],
+    "rating": 2.39,
+    "discountPercentage": 7.32,
+    "stock": 25
+  },
+  {
+    "id": 46,
+    "title": "Wooden Coffee Table",
+    "description": "The Wooden Coffee Table is a rustic and elegant piece of furniture, featuring a natural wood finish and sturdy construction, perfect for any living room.",
+    "price": 299.99,
+    "category": "furniture",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/furniture/Wooden%20Coffee%20Table/1.png",
+      "https://cdn.dummyjson.com/products/images/furniture/Wooden%20Coffee%20Table/2.png",
+      "https://cdn.dummyjson.com/products/images/furniture/Wooden%20Coffee%20Table/3.png"
+    ],
+    "rating": 4.64,
+    "discountPercentage": 13.41,
+    "stock": 15
+  },
+  {
+    "id": 47,
+    "title": "Apple Juice",
+    "description": "Apple Juice is a refreshing and natural beverage made from fresh apples. It's a healthy choice for quenching your thirst and enjoying a fruity taste.",
+    "price": 3.99,
+    "category": "groceries",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/groceries/Apple%20Juice/1.png"
+    ],
+    "rating": 4.91,
+    "discountPercentage": 8.09,
+    "stock": 17
+  },
+  {
+    "id": 48,
+    "title": "Orange Juice",
+    "description": "Orange Juice is a delicious and tangy drink made from ripe oranges. Packed with vitamin C, it's a great way to start your day or enjoy as a refreshing treat.",
+    "price": 4.49,
+    "category": "groceries",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/groceries/Orange%20Juice/1.png"
+    ],
+    "rating": 3.56,
+    "discountPercentage": 12.99,
+    "stock": 19
+  },
+  {
+    "id": 49,
+    "title": "Whole Wheat Bread",
+    "description": "Whole Wheat Bread is a nutritious bread made from whole grains, providing more fiber and essential nutrients compared to white bread.",
+    "price": 2.99,
+    "category": "groceries",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/groceries/Whole%20Wheat%20Bread/1.png"
+    ],
+    "rating": 4.68,
+    "discountPercentage": 15.65,
+    "stock": 14
+  },
+  {
+    "id": 50,
+    "title": "Organic Almonds",
+    "description": "Organic Almonds are a healthy snack option, rich in protein and healthy fats. Enjoy them on their own or use them in cooking and baking.",
+    "price": 8.99,
+    "category": "groceries",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/groceries/Organic%20Almonds/1.png"
+    ],
+    "rating": 4.57,
+    "discountPercentage": 5.45,
+    "stock": 8
+  },
+  {
+    "id": 51,
+    "title": "Fresh Spinach",
+    "description": "Fresh Spinach is a nutritious leafy green vegetable, ideal for salads, smoothies, or cooking. Packed with vitamins and minerals for a healthy diet.",
+    "price": 2.49,
+    "category": "groceries",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/groceries/Fresh%20Spinach/1.png"
+    ],
+    "rating": 4.36,
+    "discountPercentage": 4.99,
+    "stock": 22
+  },
+  {
+    "id": 52,
+    "title": "Whole Milk",
+    "description": "Whole Milk provides a rich and creamy taste, perfect for drinking or cooking. It's a good source of calcium and essential nutrients.",
+    "price": 1.89,
+    "category": "groceries",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/groceries/Whole%20Milk/1.png"
+    ],
+    "rating": 4.76,
+    "discountPercentage": 6.4,
+    "stock": 13
+  },
+  {
+    "id": 53,
+    "title": "Greek Yogurt",
+    "description": "Greek Yogurt is thick and creamy, with high protein content and a tangy flavor. It's perfect for breakfast or as a base for smoothies and desserts.",
+    "price": 5.99,
+    "category": "groceries",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/groceries/Greek%20Yogurt/1.png"
+    ],
+    "rating": 3.89,
+    "discountPercentage": 9.0,
+    "stock": 20
+  },
+  {
+    "id": 54,
+    "title": "Granola Bars",
+    "description": "Granola Bars are a convenient and tasty snack option, packed with oats, nuts, and honey. Ideal for a quick energy boost throughout the day.",
+    "price": 4.49,
+    "category": "groceries",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/groceries/Granola%20Bars/1.png"
+    ],
+    "rating": 3.69,
+    "discountPercentage": 7.5,
+    "stock": 15
+  },
+  {
+    "id": 55,
+    "title": "Mixed Nuts",
+    "description": "Mixed Nuts are a healthy and crunchy snack, providing a variety of nuts like almonds, cashews, and walnuts. Great for snacking or adding to dishes.",
+    "price": 6.99,
+    "category": "groceries",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/groceries/Mixed%20Nuts/1.png"
+    ],
+    "rating": 4.11,
+    "discountPercentage": 11.25,
+    "stock": 17
+  },
+  {
+    "id": 56,
+    "title": "Brown Rice",
+    "description": "Brown Rice is a whole grain option, providing more fiber and nutrients compared to white rice. It's a healthy choice for various dishes.",
+    "price": 3.99,
+    "category": "groceries",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/groceries/Brown%20Rice/1.png"
+    ],
+    "rating": 4.23,
+    "discountPercentage": 10.99,
+    "stock": 19
+  },
+  {
+    "id": 57,
+    "title": "Avocado",
+    "description": "Avocado is a creamy and nutritious fruit, rich in healthy fats and vitamins. Perfect for salads, spreads, or as a healthy snack.",
+    "price": 1.99,
+    "category": "groceries",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/groceries/Avocado/1.png"
+    ],
+    "rating": 4.55,
+    "discountPercentage": 3.99,
+    "stock": 8
+  },
+  {
+    "id": 58,
+    "title": "Organic Honey",
+    "description": "Organic Honey is a natural sweetener, free from additives and preservatives. Ideal for sweetening tea, baking, or as a topping for various dishes.",
+    "price": 7.99,
+    "category": "groceries",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/groceries/Organic%20Honey/1.png"
+    ],
+    "rating": 4.74,
+    "discountPercentage": 6.5,
+    "stock": 12
+  },
+  {
+    "id": 59,
+    "title": "Whole Wheat Pasta",
+    "description": "Whole Wheat Pasta is a healthier alternative to regular pasta, providing more fiber and nutrients. Perfect for a variety of pasta dishes.",
+    "price": 2.99,
+    "category": "groceries",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/groceries/Whole%20Wheat%20Pasta/1.png"
+    ],
+    "rating": 4.22,
+    "discountPercentage": 8.0,
+    "stock": 14
+  },
+  {
+    "id": 60,
+    "title": "Oatmeal",
+    "description": "Oatmeal is a nutritious breakfast option, packed with fiber and essential nutrients. Great for starting your day with a healthy and filling meal.",
+    "price": 4.49,
+    "category": "groceries",
+    "images": [
+      "https://cdn.dummyjson.com/products/images/groceries/Oatmeal/1.png"
+    ],
+    "rating": 3.91,
+    "discountPercentage": 5.6,
+    "stock": 18
+  }
+]
