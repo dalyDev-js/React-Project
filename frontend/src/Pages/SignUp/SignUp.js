@@ -7,9 +7,8 @@ function SignUp() {
     const { clientX: mouseX, clientY: mouseY } = e;
     const { innerWidth: windowWidth, innerHeight: windowHeight } = window;
 
-    // Calculate the position as a percentage of the window size
-    const x = mouseX / windowWidth + 500; // Moves background based on x-axis
-    const y = mouseY / windowHeight + 50; // Moves background based on y-axis
+    const x = mouseX / windowWidth + 500;
+    const y = mouseY / windowHeight + 50;
 
     setBgPosition(`${x}%  ${y}%`);
   };
