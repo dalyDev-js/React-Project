@@ -1,12 +1,13 @@
 import express from "express";
+import cors from "cors";
 import { dbConnect } from "./src/db/dbConnect.js";
 import productRoutes from "./src/routes/products.routes.js";
 import userRoutes from "./src/routes/user.routes.js";
 import AppError from "./src/utils/appError.js";
 
 const app = express();
-const port = 3000;
-
+const port = 3001;
+app.use(cors());
 dbConnect();
 app.use(express.json());
 app.use(productRoutes);
