@@ -4,16 +4,23 @@ import { NavLink } from "react-router-dom";
 function Card({ product }) {
   return (
     <div>
-      <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className="group hover:tr   w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <NavLink href="#">
-          <img className="p-8 rounded-t-lg" src={product.images[0]} alt="" />
+          <div className="overflow-hidden">
+            <img
+              className="p-8  rounded-t-lg h-96 w-full group-hover:scale-125 duration-300  group-hover:rotate-6"
+              src={product.images[0]}
+              alt=""
+            />
+          </div>
         </NavLink>
-        <div className="px-5 pb-5">
+        <div className="px-5 pb-5 ">
           <NavLink href="#">
-            <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-              {product.title}
+            <h5 className="text-xl  font-semibold tracking-tight text-gray-900 dark:text-white">
+              {product.title.slice(0, 25)}...
             </h5>
           </NavLink>
+          <p>{product.description.slice(0, 70)}...</p>
           <div className="flex items-center mt-2.5 mb-5">
             <div className="flex items-center space-x-1 rtl:space-x-reverse">
               <svg
@@ -62,7 +69,7 @@ function Card({ product }) {
             </span>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-3xl font-bold text-gray-900 dark:text-white">
+            <span className="text-3xl font-bold text-gray-900 dark:text-white overflow-hidden">
               ${product.price}
             </span>
             <NavLink
