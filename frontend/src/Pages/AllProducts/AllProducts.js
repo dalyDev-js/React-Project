@@ -19,7 +19,7 @@ function AllProducts() {
   }, []);
 
   return (
-    <div>
+    <div className="flex justify-center items-center flex-wrap gap-20">
       {products.map((product) => (
         <Card product={product} />
       ))}
