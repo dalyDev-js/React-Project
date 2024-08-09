@@ -10,6 +10,7 @@ import Home from "./Pages/Home/Home";
 import Header from "./Components/Navbar/Navbar";
 import MyGallery from "./Components/Carousel/Carousel";
 import VerifyngAccount from "./Pages/VerifyngAccount/VerifyngAccount";
+import Cart from "./Pages/Cart/Cart";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/card" Component={Card} />
           <Route path="/products" Component={AllProducts} />
           <Route path="/carousel" Component={MyGallery} />
+          <Route path="/cart" Component={Cart} />
           <Route path="*" Component={PageNotFound} />
           <Route path="/verify/:token" Component={VerifyngAccount} />
         </Routes>
