@@ -11,6 +11,11 @@ const cartSchema = new mongoose.Schema(
     quantity: Number,
     createdAt: Date,
     totalPrice: Number,
+    createdBy: {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   { timestamps: true, versionKey: false }
 );

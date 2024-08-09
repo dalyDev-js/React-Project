@@ -35,7 +35,6 @@ function SignIn() {
       setError(error.response?.data?.message || "An error occurred");
     } finally {
       setLoading(false);
-      navigate("/");
     }
   };
 
