@@ -9,6 +9,7 @@ import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 import Home from "./Pages/Home/Home";
 import Header from "./Components/Navbar/Navbar";
 import MyGallery from "./Components/Carousel/Carousel";
+import VerifyngAccount from "./Pages/VerifyngAccount/VerifyngAccount";
 
 function App() {
   return (
@@ -23,8 +24,8 @@ function App() {
           <Route path="/products" Component={AllProducts} />
           <Route path="/carousel" Component={MyGallery} />
           <Route path="*" Component={PageNotFound} />
+          <Route path="/verify/:token" Component={VerifyngAccount} />
         </Routes>
-
         <Footer />
       </BrowserRouter>
     </div>

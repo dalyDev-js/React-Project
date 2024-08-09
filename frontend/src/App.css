@@ -26,6 +26,7 @@
   background-image: url("../public/bg-signup.webp");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   background-attachment: fixed;
 }
 
