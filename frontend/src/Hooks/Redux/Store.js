@@ -1,11 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./Slices/CartSlice";
-import categoryReducer from "./Slices/Category";
+
 import tokenReducer from "./Slices/TokenSlice";
+import categoryReducer from "./Slices/Category";
 export default configureStore({
   reducer: {
     cart: cartReducer,
-    category: categoryReducer,
+    categories: categoryReducer,
     token: tokenReducer,
   },
 });

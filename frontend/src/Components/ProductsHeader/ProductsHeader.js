@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   sortProductsByRating,
@@ -8,22 +9,14 @@ import {
   sortDefault,
   filterCategory,
 } from "../../utils/sortingAndFilter";
+import { setCategory } from "../../Hooks/Redux/Slices/Category";
 
 function ProductsHeader({ products, onSort, onFilter }) {
   const [sortDropDown, setSortDropDown] = useState(false);
   const [filterDropDown, setFilterDropDown] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All Products");
-
-  const categories = [
-    "men's clothing",
-    "jewelery",
-    "electronics",
-    "Women's clothing",
-    "beauty",
-    "fragrances",
-    "furniture",
-    "groceries",
-  ];
+  const categories = useSelector((state) => state.categories.categories);
+  const dispatch = useDispatch();
 
   // Handle Sorting
   const handleSort = (sortFunction) => {
@@ -37,6 +30,7 @@ function ProductsHeader({ products, onSort, onFilter }) {
     const filteredProducts = filterCategory(products, category);
     onFilter(filteredProducts);
     setSelectedCategory(category);
+    dispatch(setCategory(category));
     setFilterDropDown(false);
   };
 
@@ -189,6 +183,20 @@ function ProductsHeader({ products, onSort, onFilter }) {
               </li>
               <li>
                 <button
+                  onClick={() => handleSort(sortProductsByPriceLH)}
+                  className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">
+                  Price (Low to High)
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleSort(sortProductsByPriceHL)}
+                  className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">
+                  Price (High to Low)
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => handleSort(sortProductsByRating)}
                   className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">
                   Rating
@@ -199,20 +207,6 @@ function ProductsHeader({ products, onSort, onFilter }) {
                   onClick={() => handleSort(sortProductsByDiscount)}
                   className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">
                   Discount
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleSort(sortProductsByPriceHL)}
-                  className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">
-                  Price: High to Low
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleSort(sortProductsByPriceLH)}
-                  className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">
-                  Price: Low to High
                 </button>
               </li>
             </ul>
