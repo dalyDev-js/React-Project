@@ -1,83 +1,228 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../Hooks/Redux/Slices/CartSlice";
+import axios from "axios";
 
 function Card({ product }) {
+  const [added, setAdded] = useState(false);
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.items);
+
+  const handleAddCart = async () => {
+    const token = localStorage.getItem("token");
+    const totalPrice = product.price * 1;
+
+    const newProduct = {
+      title: product.title,
+      product: product._id,
+      quantity: 1,
+      images: product.images,
+      price: product.price,
+      totalPrice: totalPrice,
+      discountPercentage: product.discountPercentage,
+    };
+    console.log(newProduct, "newProduct");
+    if (token) {
+      try {
+        // Send the new product to the server
+        await axios.post("http://localhost:3001/cart/", newProduct, {
+          headers: {
+            token: token,
+          },
+        });
+
+        // Optionally, dispatch to add the product to the Redux store
+        dispatch(addToCart(newProduct));
+
+        setAdded(true);
+        console.log("Product added to cart and server updated.");
+      } catch (error) {
+        console.error("Failed to add product to cart:", error);
+      }
+    } else {
+      console.log("please log in first");
+    }
+  };
+
   return (
-    <div>
-      <div className="group hover:tr   w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <NavLink href="#">
-          <div className="overflow-hidden">
-            <img
-              className="p-8  rounded-t-lg h-96 w-full group-hover:scale-125 duration-300  group-hover:rotate-6"
-              src={product.images[0]}
-              alt=""
-            />
-          </div>
-        </NavLink>
-        <div className="px-5 pb-5 ">
-          <NavLink href="#">
-            <h5 className="text-xl  font-semibold tracking-tight text-gray-900 dark:text-white">
-              {product.title.slice(0, 25)}...
-            </h5>
-          </NavLink>
-          <p>{product.description.slice(0, 70)}...</p>
-          <div className="flex items-center mt-2.5 mb-5">
-            <div className="flex items-center space-x-1 rtl:space-x-reverse">
+    <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+      <div className="h-56 w-full">
+        <Link to="#">
+          <img
+            className="mx-auto h-full dark:hidden"
+            src={product.images[0]}
+            alt={product.title}
+          />
+        </Link>
+      </div>
+      <div className="pt-6">
+        <div className="mb-4 flex items-center justify-between gap-4">
+          <span className="me-2 rounded bg-blue-400 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
+            Up to {product.discountPercentage}% off
+          </span>
+
+          <div className="flex items-center justify-end gap-1">
+            <button
+              type="button"
+              data-tooltip-target="tooltip-quick-look"
+              className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+              <span className="sr-only">Quick look</span>
               <svg
-                className="w-4 h-4 text-yellow-300"
+                className="h-5 w-5"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24">
+                <path
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
+                />
+                <path
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                />
               </svg>
-              <svg
-                className="w-4 h-4 text-yellow-300"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-              </svg>
-              <svg
-                className="w-4 h-4 text-yellow-300"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-              </svg>
-              <svg
-                className="w-4 h-4 text-yellow-300"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-              </svg>
-              <svg
-                className="w-4 h-4 text-gray-200 dark:text-gray-600"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-              </svg>
+            </button>
+            <div
+              id="tooltip-quick-look"
+              role="tooltip"
+              className="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
+              data-popper-placement="top">
+              Quick look
+              <div className="tooltip-arrow" data-popper-arrow=""></div>
             </div>
-            <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">
-              {product.rating}
-            </span>
+
+            <button
+              type="button"
+              data-tooltip-target="tooltip-add-to-favorites"
+              className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+              <span className="sr-only">Add to Favorites</span>
+              <svg
+                className="h-5 w-5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24">
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z"
+                />
+              </svg>
+            </button>
+            <div
+              id="tooltip-add-to-favorites"
+              role="tooltip"
+              className="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
+              data-popper-placement="top">
+              Add to favorites
+              <div className="tooltip-arrow" data-popper-arrow=""></div>
+            </div>
           </div>
-          <div className="flex items-center justify-between">
-            <span className="text-3xl font-bold text-gray-900 dark:text-white overflow-hidden">
-              ${product.price}
-            </span>
-            <NavLink
-              href="#"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-              Add to cart
-            </NavLink>
+        </div>
+
+        <Link
+          to="#"
+          className="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">
+          {product.title}
+        </Link>
+
+        <div className="mt-2 flex items-center gap-2">
+          <div className="flex items-center">
+            {/* Add SVG icons */}
+            {[...Array(5)].map((_, i) => (
+              <svg
+                key={i}
+                className={`h-4 w-4 ${
+                  i < Math.round(product.rating)
+                    ? "text-yellow-400"
+                    : "text-gray-300"
+                }`}
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 24 24">
+                <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+              </svg>
+            ))}
           </div>
+          <p className="text-sm font-medium text-gray-900 dark:text-white">
+            {product.rating}
+          </p>
+          <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+            (455)
+          </p>
+        </div>
+
+        <ul className="mt-2 flex items-center gap-4">
+          <li className="flex items-center gap-2">
+            <svg
+              className="h-4 w-4 text-gray-500 dark:text-gray-400"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24">
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"
+              />
+            </svg>
+            <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+              Fast Delivery
+            </p>
+          </li>
+
+          <li className="flex items-center gap-2">
+            <svg
+              className="h-4 w-4 text-gray-500 dark:text-gray-400"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24">
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
+              />
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+              />
+            </svg>
+            <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+              2-year warranty
+            </p>
+          </li>
+        </ul>
+
+        <div className="mt-4 flex items-center justify-between">
+          <p className="text-2xl font-bold text-gray-900 dark:text-white">
+            ${product.price}
+          </p>
+
+          <button
+            onClick={handleAddCart}
+            disabled={added}
+            className={`rounded-lg py-2 px-4 text-white ${
+              added ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600"
+            }`}>
+            {added ? "Added" : "Add to Cart"}
+          </button>
         </div>
       </div>
     </div>

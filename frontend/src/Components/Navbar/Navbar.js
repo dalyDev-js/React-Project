@@ -1,7 +1,22 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, NavLink } from "react-router-dom";
+import { setToken } from "../../Hooks/Redux/Slices/TokenSlice";
 
 function Header() {
+  const [name, setName] = useState("");
+  const token = useSelector((state) => state.token.token);
+  const dispatch = useDispatch();
+  localStorage.getItem("token", token);
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token", token);
+    dispatch(setToken(storedToken));
+    if (token) {
+      const decoded = jwtDecode(token);
+      setName(decoded.name);
+    }
+  }, [dispatch, token]);
   return (
     <div>
       <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
@@ -130,53 +145,101 @@ function Header() {
               </li>
               <li>
                 <NavLink to="wishlist">
-                <svg
-                  className="w-6 h-6 text-gray-800 dark:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  viewBox="0 0 24 24">
-                  <path d="m12.75 20.66 6.184-7.098c2.677-2.884 2.559-6.506.754-8.705-.898-1.095-2.206-1.816-3.72-1.855-1.293-.034-2.652.43-3.963 1.442-1.315-1.012-2.678-1.476-3.973-1.442-1.515.04-2.825.76-3.724 1.855-1.806 2.201-1.915 5.823.772 8.706l6.183 7.097c.19.216.46.34.743.34a.985.985 0 0 0 .743-.34Z" />
-                </svg>
+                  <svg
+                    className="w-6 h-6 text-gray-800 dark:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="currentColor"
+                    viewBox="0 0 24 24">
+                    <path d="m12.75 20.66 6.184-7.098c2.677-2.884 2.559-6.506.754-8.705-.898-1.095-2.206-1.816-3.72-1.855-1.293-.034-2.652.43-3.963 1.442-1.315-1.012-2.678-1.476-3.973-1.442-1.515.04-2.825.76-3.724 1.855-1.806 2.201-1.915 5.823.772 8.706l6.183 7.097c.19.216.46.34.743.34a.985.985 0 0 0 .743-.34Z" />
+                  </svg>
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/cart">
-                <svg
-                  className="w-6 h-6 text-gray-800 dark:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  viewBox="0 0 24 24">
-                  <path
-                    fill-rule="evenodd"
-                    d="M4 4a1 1 0 0 1 1-1h1.5a1 1 0 0 1 .979.796L7.939 6H19a1 1 0 0 1 .979 1.204l-1.25 6a1 1 0 0 1-.979.796H9.605l.208 1H17a3 3 0 1 1-2.83 2h-2.34a3 3 0 1 1-4.009-1.76L5.686 5H5a1 1 0 0 1-1-1Z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
+                  <svg
+                    className="w-6 h-6 text-gray-800 dark:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      fill-rule="evenodd"
+                      d="M4 4a1 1 0 0 1 1-1h1.5a1 1 0 0 1 .979.796L7.939 6H19a1 1 0 0 1 .979 1.204l-1.25 6a1 1 0 0 1-.979.796H9.605l.208 1H17a3 3 0 1 1-2.83 2h-2.34a3 3 0 1 1-4.009-1.76L5.686 5H5a1 1 0 0 1-1-1Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/signin">
-                <svg
-                  className="w-6 h-6 text-gray-800 dark:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  viewBox="0 0 24 24">
-                  <path
-                    fill-rule="evenodd"
-                    d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                </NavLink>
+                {!token ? (
+                  <NavLink to="/signin">
+                    <svg
+                      className="w-6 h-6 text-gray-800 dark:text-white"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        fill-rule="evenodd"
+                        d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </NavLink>
+                ) : (
+                  <>
+                    <button
+                      id="dropdownDividerButton"
+                      data-dropdown-toggle="dropdownDivider"
+                      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      type="button">
+                      Welcome, {name}
+                      <svg
+                        class="w-2.5 h-2.5 ms-3"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 10 6">
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="m1 1 4 4 4-4"
+                        />
+                      </svg>
+                    </button>
+                    <div
+                      id="dropdownDivider"
+                      class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                      <ul
+                        class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                        aria-labelledby="dropdownDividerButton">
+                        <li>
+                          <Link
+                            href="#"
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            Cart
+                          </Link>
+                        </li>
+                      </ul>
+                      <div class="py-2">
+                        <Link
+                          to={"/signout"}
+                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                          Sign Out
+                        </Link>
+                      </div>
+                    </div>
+                  </>
+                )}
               </li>
             </ul>
           </div>

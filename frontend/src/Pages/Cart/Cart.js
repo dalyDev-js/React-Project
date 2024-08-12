@@ -1,299 +1,352 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCartItems } from "../../Hooks/Redux/Slices/CartSlice";
 import axios from "axios";
-import { NavLink } from "react-router-dom";
+import {
+  getCartItems,
+  removeFromCart,
+  updateCartItem,
+} from "../../Hooks/Redux/Slices/CartSlice";
+import { Link, NavLink } from "react-router-dom";
+
 function Cart() {
   const dispatch = useDispatch();
-  let cartItems = useSelector((state) => state.cart.items);
+  const token = localStorage.getItem("token");
+  const cartItems = useSelector((state) => state.cart.items);
   console.log(cartItems);
-
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
         const response = await axios.get("http://localhost:3001/cart/", {
           headers: {
-            token:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmI2NTE1NDM3MTcwOTBkYjE4MTVkYTMiLCJpYXQiOjE3MjMyMjQ3Nzd9.3vxTiVfnOwo46YocqF7STIgkbUdEa5xhGbC7Nv1AmXs",
+            token: token,
           },
         });
 
-        const fetchedCartItems = response.data.cartItems;
+        // Access the products array from the response
+        const products = response.data.cart.products;
+        console.log(response.data);
 
-        dispatch(getCartItems(fetchedCartItems));
-      } catch (err) {
-        console.error("Failed to fetch cart items:", err);
+        // Dispatch the action to set cart items
+        dispatch(getCartItems(products));
+      } catch (error) {
+        console.error("Failed to fetch cart items:", error.message);
       }
     };
 
-    fetchCartItems();
-  }, [dispatch]);
+    if (token) {
+      fetchCartItems();
+    }
+  }, [dispatch, token]);
+
+  const handleQuantityChange = async (itemId, change) => {
+    try {
+      // Find the item in the cart
+      const item = cartItems.find((item) => item._id === itemId);
+      if (!item) return;
+
+      const newQuantity = item.quantity + change;
+      if (newQuantity < 0) return;
+
+      await axios.put(
+        `http://localhost:3001/cart/${itemId}`,
+
+        { itemId: itemId, quantity: newQuantity },
+        {
+          headers: {
+            token: token,
+          },
+        }
+      );
+      dispatch(updateCartItem({ itemId, quantity: newQuantity }));
+    } catch (error) {
+      console.error("Failed to update quantity:", error.message);
+    }
+  };
+
+  const handleDeleteCartItem = async (item) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3001/cart/${item._id}`,
+        {
+          headers: {
+            token: token,
+          },
+        }
+      );
+      console.log(response);
+      dispatch(removeFromCart(item));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const calculateTotalSavings = () => {
+    return cartItems.reduce((totalSavings, item) => {
+      if (item.discountPercentage) {
+        const originalPrice = item.price / (1 - item.discountPercentage / 100);
+        const savingsPerItem = (originalPrice - item.price) * item.quantity;
+        return totalSavings + savingsPerItem;
+      }
+      return totalSavings;
+    }, 0);
+  };
+
+  const calculateTotalPrice = () => {
+    return cartItems.reduce((total, item) => {
+      return total + item.price * item.quantity;
+    }, 0);
+  };
+  const totalPrice = calculateTotalPrice();
+  const totalSavings = calculateTotalSavings();
+  console.log(totalSavings);
   return (
-    <div>
-      <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
-        <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
-            Shopping Cart
-          </h2>
+    <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+      <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
+          Shopping Cart
+        </h2>
 
-          <div class="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
-            <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
-              <div class="space-y-6">
-                <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
-                  <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
-                    <NavLink href="#" class="shrink-0 md:order-1">
-                      <img
-                        class="h-20 w-20 dark:hidden"
-                        src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
-                        alt="imac  "
-                      />
-                      <img
-                        class="hidden h-20 w-20 dark:block"
-                        src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
-                        alt="imac  "
-                      />
-                    </NavLink>
+        <div class="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
+          <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
+            <div class="space-y-6">
+              {cartItems &&
+                cartItems.map((item) => (
+                  /* card */
 
-                    <label for="counter-input" class="sr-only">
-                      Choose quantity:
-                    </label>
-                    <div class="flex items-center justify-between md:order-3 md:justify-end">
-                      <div class="flex items-center">
-                        <button
-                          type="button"
-                          id="decrement-button"
-                          data-input-counter-decrement="counter-input"
-                          class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                          <svg
-                            class="h-2.5 w-2.5 text-gray-900 dark:text-white"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 18 2">
-                            <path
-                              stroke="currentColor"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M1 1h16"
-                            />
-                          </svg>
-                        </button>
-                        <input
-                          type="text"
-                          id="counter-input"
-                          data-input-counter
-                          class="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white"
-                          placeholder=""
-                          value="2"
-                          required
+                  <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
+                    <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
+                      <Link href="#" class="shrink-0 md:order-1">
+                        <img
+                          class="h-20 w-20 dark:hidden"
+                          src={item.images}
+                          alt="imac  "
                         />
-                        <button
-                          type="button"
-                          id="increment-button"
-                          data-input-counter-increment="counter-input"
-                          class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                          <svg
-                            class="h-2.5 w-2.5 text-gray-900 dark:text-white"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 18 18">
-                            <path
-                              stroke="currentColor"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M9 1v16M1 9h16"
-                            />
-                          </svg>
-                        </button>
+                      </Link>
+
+                      <label for="counter-input" class="sr-only">
+                        Choose quantity:
+                      </label>
+                      <div class="flex items-center justify-between md:order-3 md:justify-end">
+                        <div class="flex items-center">
+                          <button
+                            type="button"
+                            id="decrement-button"
+                            onClick={() => handleQuantityChange(item._id, -1)}
+                            data-input-counter-decrement="counter-input"
+                            class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
+                            <svg
+                              class="h-2.5 w-2.5 text-gray-900 dark:text-white"
+                              aria-hidden="true"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 18 2">
+                              <path
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M1 1h16"
+                              />
+                            </svg>
+                          </button>
+                          <input
+                            type="text"
+                            id="counter-input"
+                            data-input-counter
+                            class="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white"
+                            placeholder=""
+                            value={item.quantity}
+                            required
+                          />
+                          <button
+                            type="button"
+                            id="increment-button"
+                            onClick={() => handleQuantityChange(item._id, 1)}
+                            data-input-counter-increment="counter-input"
+                            class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
+                            <svg
+                              class="h-2.5 w-2.5 text-gray-900 dark:text-white"
+                              aria-hidden="true"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 18 18">
+                              <path
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 1v16M1 9h16"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+                        <div class="text-end md:order-4 md:w-32">
+                          <p class="text-base font-bold text-gray-900 dark:text-white">
+                            ${(item.price * item.quantity).toFixed(2)}
+                          </p>
+                        </div>
                       </div>
-                      <div class="text-end md:order-4 md:w-32">
-                        <p class="text-base font-bold text-gray-900 dark:text-white">
-                          $1,499
-                        </p>
-                      </div>
-                    </div>
 
-                    <div class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
-                      <NavLink
-                        href="#"
-                        class="text-base font-medium text-gray-900 hover:underline dark:text-white">
-                        PC system All in One APPLE iMac (2023) mqrq3ro/NavLink,
-                        Apple M3, 24" Retina 4.5K, 8GB, SSD 256GB, 10-core GPU,
-                        Keyboard layout INT
-                      </NavLink>
+                      <div class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
+                        <Link
+                          href="#"
+                          class="text-base font-medium text-gray-900 hover:underline dark:text-white">
+                          {item.title}
+                        </Link>
 
-                      <div class="flex items-center gap-4">
-                        <button
-                          type="button"
-                          class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 hover:underline dark:text-gray-400 dark:hover:text-white">
-                          <svg
-                            class="me-1.5 h-5 w-5"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            fill="none"
-                            viewBox="0 0 24 24">
-                            <path
-                              stroke="currentColor"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
-                            />
-                          </svg>
-                          Add to Favorites
-                        </button>
+                        <div class="flex items-center gap-4">
+                          <button
+                            type="button"
+                            class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 hover:underline dark:text-gray-400 dark:hover:text-white">
+                            <svg
+                              class="me-1.5 h-5 w-5"
+                              aria-hidden="true"
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              fill="none"
+                              viewBox="0 0 24 24">
+                              <path
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
+                              />
+                            </svg>
+                            Add to Favorites
+                          </button>
 
-                        <button
-                          type="button"
-                          class="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500">
-                          <svg
-                            class="me-1.5 h-5 w-5"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            fill="none"
-                            viewBox="0 0 24 24">
-                            <path
-                              stroke="currentColor"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M6 18 17.94 6M18 18 6.06 6"
-                            />
-                          </svg>
-                          Remove
-                        </button>
+                          <button
+                            onClick={() => handleDeleteCartItem(item)}
+                            type="button"
+                            class="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500">
+                            <svg
+                              class="me-1.5 h-5 w-5"
+                              aria-hidden="true"
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              fill="none"
+                              viewBox="0 0 24 24">
+                              <path
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M6 18 17.94 6M18 18 6.06 6"
+                              />
+                            </svg>
+                            Remove
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                ))}
             </div>
+            {!cartItems.products && <h1>No items added .</h1>}
+          </div>
 
-            <div class="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
-              <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
-                <p class="text-xl font-semibold text-gray-900 dark:text-white">
-                  Order summary
-                </p>
+          <div class="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
+            <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
+              <p class="text-xl font-semibold text-gray-900 dark:text-white">
+                Order summary
+              </p>
 
-                <div class="space-y-4">
-                  <div class="space-y-2">
-                    <dl class="flex items-center justify-between gap-4">
-                      <dt class="text-base font-normal text-gray-500 dark:text-gray-400">
-                        Original price
-                      </dt>
-                      <dd class="text-base font-medium text-gray-900 dark:text-white">
-                        $7,592.00
-                      </dd>
-                    </dl>
-
-                    <dl class="flex items-center justify-between gap-4">
-                      <dt class="text-base font-normal text-gray-500 dark:text-gray-400">
-                        Savings
-                      </dt>
-                      <dd class="text-base font-medium text-green-600">
-                        -$299.00
-                      </dd>
-                    </dl>
-
-                    <dl class="flex items-center justify-between gap-4">
-                      <dt class="text-base font-normal text-gray-500 dark:text-gray-400">
-                        Store Pickup
-                      </dt>
-                      <dd class="text-base font-medium text-gray-900 dark:text-white">
-                        $99
-                      </dd>
-                    </dl>
-
-                    <dl class="flex items-center justify-between gap-4">
-                      <dt class="text-base font-normal text-gray-500 dark:text-gray-400">
-                        Tax
-                      </dt>
-                      <dd class="text-base font-medium text-gray-900 dark:text-white">
-                        $799
-                      </dd>
-                    </dl>
-                  </div>
-
-                  <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
-                    <dt class="text-base font-bold text-gray-900 dark:text-white">
-                      Total
+              <div class="space-y-4">
+                <div class="space-y-2">
+                  <dl class="flex items-center justify-between gap-4">
+                    <dt class="text-base font-normal text-gray-500 dark:text-gray-400">
+                      Original price
                     </dt>
-                    <dd class="text-base font-bold text-gray-900 dark:text-white">
-                      $8,191.00
+                    <dd class="text-base font-medium text-gray-900 dark:text-white">
+                      ${(totalPrice + totalSavings).toFixed(2)}
+                    </dd>
+                  </dl>
+
+                  <dl class="flex items-center justify-between gap-4">
+                    <dt class="text-base font-normal text-gray-500 dark:text-gray-400">
+                      Savings
+                    </dt>
+                    <dd class="text-base font-medium text-green-600">
+                      -${totalSavings.toFixed(2)}
                     </dd>
                   </dl>
                 </div>
 
-                <NavLink
+                <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
+                  <dt class="text-base font-bold text-gray-900 dark:text-white">
+                    Total
+                  </dt>
+                  <dd class="text-base font-bold text-gray-900 dark:text-white">
+                    ${totalPrice.toFixed(2)}
+                  </dd>
+                </dl>
+              </div>
+
+              <Link
+                href="#"
+                class="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                Proceed to Checkout
+              </Link>
+
+              <div class="flex items-center justify-center gap-2">
+                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                  {" "}
+                  or{" "}
+                </span>
+                <Link
                   href="#"
-                  class="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                  Proceed to Checkout
-                </NavLink>
-
-                <div class="flex items-center justify-center gap-2">
-                  <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                    {" "}
-                    or{" "}
-                  </span>
-                  <NavLink
-                    href="#"
-                    title=""
-                    class="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">
-                    Continue Shopping
-                    <svg
-                      class="h-5 w-5"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24">
-                      <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M19 12H5m14 0-4 4m4-4-4-4"
-                      />
-                    </svg>
-                  </NavLink>
-                </div>
-              </div>
-
-              <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
-                <form class="space-y-4">
-                  <div>
-                    <label
-                      for="voucher"
-                      class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
-                      {" "}
-                      Do you have NavLink voucher or gift card?{" "}
-                    </label>
-                    <input
-                      type="text"
-                      id="voucher"
-                      class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                      placeholder=""
-                      required
+                  title=""
+                  class="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">
+                  Continue Shopping
+                  <svg
+                    class="h-5 w-5"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24">
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 12H5m14 0-4 4m4-4-4-4"
                     />
-                  </div>
-                  <button
-                    type="submit"
-                    class="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                    Apply Code
-                  </button>
-                </form>
+                  </svg>
+                </Link>
               </div>
+            </div>
+
+            <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
+              <form class="space-y-4">
+                <div>
+                  <label
+                    for="voucher"
+                    class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                    {" "}
+                    Do you have Link voucher or gift card?{" "}
+                  </label>
+                  <input
+                    type="text"
+                    id="voucher"
+                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                    placeholder=""
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                  Apply Code
+                </button>
+              </form>
             </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }
 

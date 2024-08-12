@@ -12,7 +12,8 @@ import MyGallery from "./Components/Carousel/Carousel";
 import VerifyngAccount from "./Pages/VerifyngAccount/VerifyngAccount";
 import Cart from "./Pages/Cart/Cart";
 import Wishlist from "./Pages/Wishlist/Wishlist";
-
+import SignOut from "./Pages/SignOut/SignOut";
+import "flowbite";
 function App() {
   return (
     <div className="App">
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" Component={Home} />
           <Route path="/signin" Component={SignIn} />
           <Route path="/signup" Component={SignUp} />
+          <Route path="/signout" Component={SignOut} />
           <Route path="/card" Component={Card} />
           <Route path="/products" Component={AllProducts} />
           <Route path="/carousel" Component={MyGallery} />

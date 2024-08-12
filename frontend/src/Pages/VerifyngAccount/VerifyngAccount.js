@@ -4,11 +4,10 @@ import { Link, useParams } from "react-router-dom";
 
 function VerifyngAccount() {
   const { token } = useParams();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const verifyEmail = async () => {
-      setLoading(true);
       try {
         const response = await axios.get(
           `http://localhost:3001/verify/${token}`
@@ -16,17 +15,21 @@ function VerifyngAccount() {
         console.log(response);
       } catch (error) {
         console.log(error.message);
+      } finally {
+        setLoading(false);
       }
     };
+
     if (token) {
-      // Ensure token exists before making the request
-      verifyEmail();
-      setLoading(false);
+      setLoading(true);
+      setTimeout(() => {
+        verifyEmail();
+      }, 2000);
     }
   }, [token]);
 
   return (
-    <div className="min-h-screen flex justify-center gap-5 items-center">
+    <div className="min-h-screen  flex justify-center gap-5 items-center">
       {loading && (
         <>
           <div role="status">
@@ -47,20 +50,20 @@ function VerifyngAccount() {
             </svg>
             <span class="sr-only">Loading...</span>
           </div>
-          <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+          <h1 class="mb-4 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
             verifying your account...
           </h1>
         </>
       )}
       {!loading && (
         <div className="min-h-screen flex justify-center gap-5 items-center flex-col">
-          <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+          <h1 class="mb-4 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
             Your account has been verified. Please Sign in.
           </h1>
           <Link
             to="/signin"
             type="button"
-            class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+            class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-xl px-6 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
             Sign in
           </Link>
         </div>
