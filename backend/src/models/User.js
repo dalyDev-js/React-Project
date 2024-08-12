@@ -18,7 +18,11 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
 
-    isAdmin: Boolean,
+    role: {
+      type: String,
+      enum: ["admin", "user"],
+      default: "user",
+    },
 
     cart: {
       type: mongoose.Schema.Types.ObjectId,

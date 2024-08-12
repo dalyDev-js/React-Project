@@ -37,10 +37,10 @@ const signin = catchError(async (req, res, next) => {
   if (existedUser.isConfirmed == false)
     return next(new AppError("please confirm you Account", 401));
   let token = jwt.sign(
-    { _id: existedUser._id, role: existedUser.role },
+    { _id: existedUser._id, role: existedUser.role, name: existedUser.name },
     "treka"
   );
-  res.json({ message: "welcome", token });
+  res.json({ message: "welcome", token, existedUser });
 });
 
 const verifyEmail = catchError(async (req, res, next) => {

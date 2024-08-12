@@ -1,6 +1,7 @@
 import { signin, signup, verifyEmail } from "../controllers/user.controller.js";
 import express from "express";
 import { checkEmail } from "../middleware/checkEmail.js";
+import userModel from "../models/User.js";
 
 const userRoutes = express.Router();
 
