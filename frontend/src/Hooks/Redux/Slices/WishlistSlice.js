@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const INITIAL_STATE = {
-    favorites: [],
+    fav: [],
   };
   
 
@@ -11,10 +11,13 @@ const wishlistSlice= createSlice({
     initialState: INITIAL_STATE,
     reducers:{
         addToFavorites(state, action){
-            state.favorites.push(action.payload);
+            state.fav.push(action.payload);
         },
         removeFromFavorites(state, action){
-          state.filter((product)=>product.id !== action.payload.id)
+          state.fav.filter((product)=>product.id !== action.payload.id)
         }
     }
 })
+
+export const {addToFavorites, removeFromFavorites} = wishlistSlice.actions
+export default wishlistSlice.reducer
