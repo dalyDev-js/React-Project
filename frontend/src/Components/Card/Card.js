@@ -25,14 +25,12 @@ function Card({ product }) {
     console.log(newProduct, "newProduct");
     if (token) {
       try {
-        // Send the new product to the server
         await axios.post("http://localhost:3001/cart/", newProduct, {
           headers: {
             token: token,
           },
         });
 
-        // Optionally, dispatch to add the product to the Redux store
         dispatch(addToCart(newProduct));
 
         setAdded(true);

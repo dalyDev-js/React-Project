@@ -22,11 +22,9 @@ function Cart() {
           },
         });
 
-        // Access the products array from the response
         const products = response.data.cart.products;
         console.log(response.data);
 
-        // Dispatch the action to set cart items
         dispatch(getCartItems(products));
       } catch (error) {
         console.error("Failed to fetch cart items:", error.message);
@@ -40,7 +38,6 @@ function Cart() {
 
   const handleQuantityChange = async (itemId, change) => {
     try {
-      // Find the item in the cart
       const item = cartItems.find((item) => item._id === itemId);
       if (!item) return;
 

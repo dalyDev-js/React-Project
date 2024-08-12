@@ -12,13 +12,10 @@ import MyGallery from "./Components/Carousel/Carousel";
 import VerifyngAccount from "./Pages/VerifyngAccount/VerifyngAccount";
 import Cart from "./Pages/Cart/Cart";
 import Wishlist from "./Pages/Wishlist/Wishlist";
-<<<<<<< HEAD
 import SignOut from "./Pages/SignOut/SignOut";
 import "flowbite";
-=======
 import ProductDetails from "./Pages/ProductDetails/ProductDetails";
 
->>>>>>> f3fb044ae657c65704117a31f7278d17262eba29
 function App() {
   return (
     <div className="App">

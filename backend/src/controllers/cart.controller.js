@@ -14,7 +14,6 @@ const getCartItems = catchError(async (req, res) => {
   res.status(200).json({ message: "success", cart });
 });
 
-// Add Cart Items
 const addCartItems = catchError(async (req, res) => {
   const userId = req.user._id;
   const {
@@ -27,11 +26,9 @@ const addCartItems = catchError(async (req, res) => {
     discountPercentage,
   } = req.body;
 
-  // Find the user's cart
   let cart = await cartModel.findOne({ userId });
 
   if (!cart) {
-    // If no cart exists, create a new cart with the new item
     cart = new cartModel({
       userId,
       products: [
@@ -47,17 +44,14 @@ const addCartItems = catchError(async (req, res) => {
       ],
     });
   } else {
-    // If cart exists, check if the product is already in the cart
     const existingProduct = cart.products.find(
       (item) => item.product.toString() === product.toString()
     );
 
     if (existingProduct) {
-      // If the product exists, update its quantity
       existingProduct.quantity += quantity;
       existingProduct.totalPrice = existingProduct.quantity * price;
     } else {
-      // If the product does not exist, add it as a new item
       cart.products.push({
         product,
         title,
@@ -70,10 +64,8 @@ const addCartItems = catchError(async (req, res) => {
     }
   }
 
-  // Save the cart with the updated or new product
   const updatedCart = await cart.save();
 
-  // Calculate total price and savings using reduce
   const { totalPrice: updatedTotalPrice, totalSavings } =
     updatedCart.products.reduce(
       (totals, item) => {
@@ -113,14 +105,12 @@ const updateCartItem = catchError(async (req, res) => {
     return res.status(404).json({ message: "Cart item not found" });
   }
 
-  // Update the quantity and recalculate the total price for the item
   cart.products[itemIndex].quantity = quantity;
   cart.products[itemIndex].totalPrice =
     cart.products[itemIndex].price * quantity;
 
   const updatedCart = await cart.save();
 
-  // Calculate total price and savings using reduce
   const { totalPrice: updatedTotalPrice, totalSavings } =
     updatedCart.products.reduce(
       (totals, item) => {
@@ -151,12 +141,11 @@ const deleteCartItem = catchError(async (req, res) => {
     return res.status(404).json({ message: "Cart not found" });
   }
 
-  // Filter out the product with the given itemId
   cart.products = cart.products.filter(
     (product) => product._id.toString() !== itemId
   );
 
-  await cart.save(); // Save the updated cart
+  await cart.save();
 
   console.log("item", itemId, "deleted");
   res.status(200).json({ message: "item deleted", cart });
