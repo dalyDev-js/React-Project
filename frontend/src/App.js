@@ -12,6 +12,7 @@ import MyGallery from "./Components/Carousel/Carousel";
 import VerifyngAccount from "./Pages/VerifyngAccount/VerifyngAccount";
 import Cart from "./Pages/Cart/Cart";
 import Wishlist from "./Pages/Wishlist/Wishlist";
+import ProductDetails from "./Pages/ProductDetails/ProductDetails";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/signup" Component={SignUp} />
           <Route path="/card" Component={Card} />
           <Route path="/products" Component={AllProducts} />
+          <Route path="/details/:id" Component={ProductDetails} />
           <Route path="/carousel" Component={MyGallery} />
           <Route path="/verify/:token" Component={VerifyngAccount} />
           <Route path="/cart" Component={Cart} />
