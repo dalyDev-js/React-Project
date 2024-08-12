@@ -178,7 +178,7 @@ useEffect(() => {
             {product.rating}
           </p>
           <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-            (455)
+            ({`${(Math.random() * 600).toFixed()}`})
           </p>
         </div>
 

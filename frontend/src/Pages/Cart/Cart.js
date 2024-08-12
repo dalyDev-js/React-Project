@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import {
@@ -7,11 +7,14 @@ import {
   updateCartItem,
 } from "../../Hooks/Redux/Slices/CartSlice";
 import { Link, NavLink } from "react-router-dom";
+import Modal from "../../Components/Modal/Modal";
 
 function Cart() {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   const cartItems = useSelector((state) => state.cart.items);
+  const [modal, setModal] = useState(false);
+
   console.log(cartItems);
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -60,6 +63,13 @@ function Cart() {
     }
   };
 
+  const handleOpenModal = (item) => {
+    setModal(true);
+    console.log(item);
+  };
+  const handleCloseModal = (item) => {
+    setModal(false);
+  };
   const handleDeleteCartItem = async (item) => {
     try {
       const response = await axios.delete(
@@ -214,8 +224,9 @@ function Cart() {
                             Add to Favorites
                           </button>
 
+                          {/* onClick={() => handleDeleteCartItem(item)} */}
                           <button
-                            onClick={() => handleDeleteCartItem(item)}
+                            onClick={() => handleOpenModal(item)}
                             type="button"
                             class="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500">
                             <svg
@@ -343,6 +354,12 @@ function Cart() {
           </div>
         </div>
       </div>
+      {modal && (
+        <Modal
+          onClose={handleCloseModal}
+          handleDeleteCartItem={handleDeleteCartItem}
+        />
+      )}
     </section>
   );
 }

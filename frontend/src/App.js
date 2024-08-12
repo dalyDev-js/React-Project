@@ -15,6 +15,11 @@ import Wishlist from "./Pages/Wishlist/Wishlist";
 import SignOut from "./Pages/SignOut/SignOut";
 import "flowbite";
 import ProductDetails from "./Pages/ProductDetails/ProductDetails";
+import Checkout from "./Pages/Checkout/Checkout";
+import AdminDashboard from "./Pages/AdminDashboard/AdminDashboard";
+import Users from "./Pages/AdminDashboard/Users";
+import Carts from "./Pages/AdminDashboard/Carts";
+import Products from "./Pages/AdminDashboard/Products";
 
 function App() {
   return (
@@ -32,7 +37,13 @@ function App() {
           <Route path="/carousel" Component={MyGallery} />
           <Route path="/verify/:token" Component={VerifyngAccount} />
           <Route path="/cart" Component={Cart} />
+          <Route path="/checkout" Component={Checkout} />
           <Route path="/wishlist" Component={Wishlist} />
+          <Route path="/admin" Component={AdminDashboard}>
+            <Route path="users" Component={Users} />
+            <Route path="carts" Component={Carts} />
+            <Route path="products" Component={Products} />
+          </Route>
           <Route path="*" Component={PageNotFound} />
         </Routes>
         <Footer />
