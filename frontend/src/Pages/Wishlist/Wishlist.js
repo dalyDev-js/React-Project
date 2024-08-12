@@ -1,23 +1,20 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import Card from '../../Components/Card/Card'
+// import React from 'react'
+// import { useSelector } from 'react-redux'
+// import Card from '../../Components/Card/Card'
 
-function Wishlist() {
+// function Wishlist() {
 
-const wishlist = useSelector(state=>state.wishlist.fav)  
-console.log(wishlist);
+// const wishlist = useSelector(state=>state.wishlist.fav)
+// console.log(wishlist);
 
-  return (
-    <div>
-      {wishlist.map(product=>(
-     
-      ))}
-          
-    </div>
-  )
-}
+//   return (
+//     <div>
+//       {wishlist.map(product=>(
 
-export default Wishlist
+//       ))}
 
+//     </div>
+//   )
+// }
 
-
+// export default Wishlist
