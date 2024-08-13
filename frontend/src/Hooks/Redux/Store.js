@@ -9,6 +9,6 @@ export default configureStore({
     cart: cartReducer,
     categories: categoryReducer,
     token: tokenReducer,
-    wishlist: WishlistReducer
+    wishlist: WishlistReducer,
   },
 });

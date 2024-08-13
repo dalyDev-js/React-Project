@@ -21,8 +21,10 @@ useEffect(() => {
   function handleFav() {
     if (addedToFavorites) {
       dispatch(removeFromFavorites(product));
+      console.log('removed', product);
     } else {
       dispatch(addToFavorites(product));
+      
     }
     setAddedToFavorites(!addedToFavorites);
   }
