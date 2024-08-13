@@ -12,9 +12,7 @@ const wishlistSlice = createSlice({
       state.fav.push(action.payload);
     },
     removeFromFavorites(state, action) {
-      state.fav = state.fav.filter(
-        (product) => product.id !== action.payload.id
-      );
+      state.fav = state.fav.filter((product) => product.id !== action.payload);
     },
   },
 });

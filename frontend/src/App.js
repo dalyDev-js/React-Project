@@ -13,7 +13,6 @@ import VerifyngAccount from "./Pages/VerifyngAccount/VerifyngAccount";
 import Cart from "./Pages/Cart/Cart";
 import Wishlist from "./Pages/Wishlist/Wishlist";
 import SignOut from "./Pages/SignOut/SignOut";
-import "flowbite";
 import ProductDetails from "./Pages/ProductDetails/ProductDetails";
 import Checkout from "./Pages/Checkout/Checkout";
 import AdminDashboard from "./Pages/AdminDashboard/AdminDashboard";

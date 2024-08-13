@@ -8,7 +8,7 @@ function Footer() {
         <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
           <div class="md:flex md:justify-between">
             <div class="mb-6 md:mb-0">
-              <Link to="https://flowbite.com/" class="flex items-center">
+              <Link to="" class="flex items-center">
                 <img
                   src="/assets/logo-no-background.png"
                   class="h-20 me-3"
@@ -23,7 +23,7 @@ function Footer() {
                 </h2>
                 <ul class="text-gray-500 dark:text-gray-400 font-medium">
                   <li class="mb-4">
-                    <Link to="https://flowbite.com/" class="hover:underline">
+                    <Link to="" class="hover:underline">
                       Flowbite
                     </Link>
                   </li>
