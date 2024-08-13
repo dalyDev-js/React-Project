@@ -80,7 +80,7 @@ const Products = () => {
       description: product.description,
       price: product.price,
       category: product.category,
-      images: product.images.join(", "),
+      images: product.images,
       rating: product.rating,
       stock: product.stock,
       discountPercentage: product.discountPercentage,
@@ -94,7 +94,7 @@ const Products = () => {
       await axios.delete(`http://localhost:3001/products/${productId}`);
       setProducts(products.filter((product) => product._id !== productId));
     } catch (error) {
-      console.error("Error deleting product", error);
+      console.error(error);
     }
   };
 
@@ -197,8 +197,8 @@ const Products = () => {
             className="flex flex-col max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <Link to="#" className="flex items-center justify-center">
               <img
-                className="rounded-t-lg h-48 w-48 object-cover"
-                src={product.images[0]} // Use the first image
+                className="rounded-t-lg h-48 w-48 "
+                src={product.images[0]}
                 alt={product.title}
               />
             </Link>
