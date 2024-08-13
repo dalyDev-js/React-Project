@@ -14,7 +14,7 @@ const wishlistSlice= createSlice({
             state.fav.push(action.payload);
         },
         removeFromFavorites(state, action){
-          state.fav.filter((product)=>product.id !== action.payload)
+          state.fav =  state.fav.filter((product)=>product.id !== action.payload)
         }
     }
 })
