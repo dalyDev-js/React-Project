@@ -68,9 +68,10 @@ useEffect(() => {
   };
 
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+    
+    <div className="flex w-96 justfiy-item-center flex-wrap gap-3 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
       <div className="h-56 w-full">
-        <Link to="#">
+        <Link to={`/details/${product._id}`}>
           <img
             className="mx-auto h-full dark:hidden"
             src={product.images[0]}
@@ -90,7 +91,9 @@ useEffect(() => {
               data-tooltip-target="tooltip-quick-look"
               className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
               <span className="sr-only">Quick look</span>
+              <Link to={`/details/${product._id}`}>
               <svg
+               
                 className="h-5 w-5"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
@@ -109,6 +112,7 @@ useEffect(() => {
                   d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                 />
               </svg>
+              </Link>
             </button>
             <div
               id="tooltip-quick-look"

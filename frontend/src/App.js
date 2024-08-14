@@ -19,11 +19,14 @@ import AdminDashboard from "./Pages/AdminDashboard/AdminDashboard";
 import Users from "./Pages/AdminDashboard/Users";
 import Carts from "./Pages/AdminDashboard/Carts";
 import Products from "./Pages/AdminDashboard/Products";
+import About from "./Pages/About/About";
+// import TopRated from "./Components/TopRated/TopRated";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        
         <Header />
         <Routes>
           <Route path="/" Component={Home} />
@@ -36,6 +39,7 @@ function App() {
           <Route path="/carousel" Component={MyGallery} />
           <Route path="/verify/:token" Component={VerifyngAccount} />
           <Route path="/cart" Component={Cart} />
+          <Route path="/about" Component={About} />
           <Route path="/checkout" Component={Checkout} />
           <Route path="/wishlist" Component={Wishlist} />
           <Route path="/admin" Component={AdminDashboard}>
@@ -43,8 +47,12 @@ function App() {
             <Route path="carts" Component={Carts} />
             <Route path="products" Component={Products} />
           </Route>
+          {/* <Route path="/toprated" Component={TopRated}/> */}
           <Route path="*" Component={PageNotFound} />
+        
         </Routes>
+        
+
         <Footer />
       </BrowserRouter>
     </div>

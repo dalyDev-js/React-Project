@@ -249,14 +249,14 @@ function Checkout() {
           <p class="mt-6 text-center text-gray-500 dark:text-gray-400 sm:mt-8 lg:text-left">
             Payment processed by{" "}
             <Link
-              href="#"
+              to="#"
               title=""
               class="font-medium text-blue-700 underline hover:no-underline dark:text-blue-500">
               Paddle
             </Link>{" "}
             for{" "}
             <Link
-              href="#"
+              to="#"
               title=""
               class="font-medium text-blue-700 underline hover:no-underline dark:text-blue-500">
               Flowbite LLC

@@ -10,6 +10,7 @@ function Header() {
   const dispatch = useDispatch();
 
   const favoritesCount = useSelector(state=>state.wishlist.fav.length);
+  const cartCount = useSelector(state=>state.cart.items.length);
   
 
   localStorage.getItem("token", token);
@@ -121,25 +122,19 @@ function Header() {
               </li>
               <li>
                 <NavLink
-                  to="#"
+                  to="/about"
                   className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                   About
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  to="#"
+                  to="/products"
                   className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                   Shop
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  to="#"
-                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                  Contact
-                </NavLink>
-              </li>
+
               <li>
                 <NavLink to="wishlist" className="flex">
                   <svg
@@ -157,7 +152,7 @@ function Header() {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/cart">
+                <NavLink to="cart" className="flex">
                   <svg
                     className="w-6 h-6 text-gray-800 dark:text-white"
                     aria-hidden="true"
@@ -172,6 +167,7 @@ function Header() {
                       clip-rule="evenodd"
                     />
                   </svg>
+                  <span>({cartCount})</span>
                 </NavLink>
               </li>
               <li>

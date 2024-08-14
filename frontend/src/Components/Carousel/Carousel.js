@@ -13,7 +13,7 @@ const items = [
         description: "This is the description for card 1.",
         image:
           " https://cdn.dummyjson.com/products/images/beauty/Powder%20Canister/1.png   ",
-        link: "#",
+        link: "/details/",
       },
       {
         title: "Card 2",
@@ -56,11 +56,11 @@ const renderItem = (item) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-4">
             {item.content.map((card, index) => (
               <div class="card-container max-w-sm overflow-hidden p-12 h  bg-white border      dark:bg-gray-800 dark:border-gray-700">
-                <Link href="#">
+                <Link to="#">
                   <img class="  h-60" src={card.image} alt="" />
                 </Link>
                 <div class=" flex justify-center items-center flex-col gap-3">
-                  <Link href="#">
+                  <Link to="#">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                       {card.title}
                     </h5>
@@ -69,7 +69,7 @@ const renderItem = (item) => {
                     {card.description}
                   </p>
                   <Link
-                    href="#"
+                    to="#"
                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     Read more
                     <svg
