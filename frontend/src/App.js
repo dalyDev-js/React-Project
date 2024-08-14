@@ -21,6 +21,8 @@ import Users from "./Pages/AdminDashboard/Users";
 import Carts from "./Pages/AdminDashboard/Carts";
 import Products from "./Pages/AdminDashboard/Products";
 import ProtectedRoute from "./utils/ProtectedRoute";
+import About from "./Pages/About/About";
+// import TopRated from "./Components/TopRated/TopRated";
 
 function App() {
   return (
@@ -38,6 +40,7 @@ function App() {
           <Route path="/carousel" Component={MyGallery} />
           <Route path="/verify/:token" Component={VerifyngAccount} />
           <Route path="/cart" Component={Cart} />
+          <Route path="/about" Component={About} />
           <Route path="/checkout" Component={Checkout} />
           <Route path="/wishlist" Component={Wishlist} />
           <Route path="/protected" Component={ProtectedRoute} />
@@ -48,8 +51,10 @@ function App() {
               <Route path="products" Component={Products} />
             </Route>
           </Route>
+          {/* <Route path="/toprated" Component={TopRated}/> */}
           <Route path="*" Component={PageNotFound} />
         </Routes>
+
         <Footer />
       </BrowserRouter>
     </div>

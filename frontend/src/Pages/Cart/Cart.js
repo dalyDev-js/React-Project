@@ -116,7 +116,7 @@ function Cart() {
 
                   <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
                     <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
-                      <Link href="#" class="shrink-0 md:order-1">
+                      <Link to="#" class="shrink-0 md:order-1">
                         <img
                           class="h-20 w-20 dark:hidden"
                           src={item.images}
@@ -190,7 +190,7 @@ function Cart() {
 
                       <div class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
                         <Link
-                          href="#"
+                          to="#"
                           class="text-base font-medium text-gray-900 hover:underline dark:text-white">
                           {item.title}
                         </Link>
@@ -288,7 +288,7 @@ function Cart() {
               </div>
 
               <Link
-                href="#"
+                to="#"
                 class="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                 Proceed to Checkout
               </Link>
@@ -299,7 +299,7 @@ function Cart() {
                   or{" "}
                 </span>
                 <Link
-                  href="#"
+                  to="/products"
                   title=""
                   class="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">
                   Continue Shopping
