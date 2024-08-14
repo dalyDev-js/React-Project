@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Modal from "../../Components/Modal/Modal";
 
 const Products = () => {
+  const [modal, setModal] = useState(false);
+  const [deletedItem, setDeletedItem] = useState(null);
+
   const [products, setProducts] = useState([]);
   const [form, setForm] = useState({
     title: "",
@@ -91,8 +95,10 @@ const Products = () => {
 
   const handleDelete = async (productId) => {
     try {
-      await axios.delete(`http://localhost:3001/products/${productId}`);
-      setProducts(products.filter((product) => product._id !== productId));
+      await axios.delete(`http://localhost:3001/products/${deletedItem}`);
+      setProducts(products.filter((product) => product._id !== deletedItem));
+      setModal(false);
+      setDeletedItem(null);
     } catch (error) {
       console.error(error);
     }
@@ -102,6 +108,10 @@ const Products = () => {
     setIsFormVisible(!isFormVisible);
   };
 
+  const confirmDelete = (productId) => {
+    setDeletedItem(productId);
+    setModal(true);
+  };
   return (
     <div>
       <h2 className="text-xl font-semibold mb-4">Products</h2>
@@ -229,12 +239,12 @@ const Products = () => {
             </div>
             <div className="flex justify-center space-x-2 p-4">
               <button
-                onClick={() => handleEdit(product)}
+                onClick={() => handleEdit(product._id)}
                 className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-yellow-500 rounded-lg hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
                 Edit
               </button>
               <button
-                onClick={() => handleDelete(product._id)}
+                onClick={() => confirmDelete(product._id)}
                 className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                 Delete
               </button>
@@ -242,6 +252,13 @@ const Products = () => {
           </div>
         ))}
       </div>
+      {modal && (
+        <Modal
+          onClose={() => setModal(false)}
+          onConfirm={handleDelete}
+          message="Are you sure you want to delete this product?"
+        />
+      )}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Modal from "../../Components/Modal/Modal";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -11,6 +12,8 @@ const Users = () => {
   });
   const [editingUser, setEditingUser] = useState(null);
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
 
   useEffect(() => {
     fetchUsers();
@@ -64,13 +67,20 @@ const Users = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleDelete = async (userId) => {
+  const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3001/users/${userId}`);
-      setUsers(users.filter((user) => user._id !== userId));
+      await axios.delete(`http://localhost:3001/users/${selectedUser}`);
+      setUsers(users.filter((user) => user._id !== selectedUser));
+      setModal(false);
+      setSelectedUser(null);
     } catch (error) {
       console.error("Error deleting user", error);
     }
+  };
+
+  const confirmDelete = (userId) => {
+    setSelectedUser(userId);
+    setModal(true);
   };
 
   const toggleFormVisibility = () => {
@@ -83,7 +93,7 @@ const Users = () => {
 
       <button
         onClick={toggleFormVisibility}
-        className={` text-white px-4 py-2 rounded mb-4 ${
+        className={`text-white px-4 py-2 rounded mb-4 ${
           isFormVisible ? "bg-red-600" : "bg-green-500"
         }`}>
         {isFormVisible ? "Cancel" : "Add User"}
@@ -159,7 +169,7 @@ const Users = () => {
                 Edit
               </button>
               <button
-                onClick={() => handleDelete(user._id)}
+                onClick={() => confirmDelete(user._id)}
                 className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                 Delete
               </button>
@@ -167,6 +177,14 @@ const Users = () => {
           </div>
         ))}
       </div>
+
+      {modal && (
+        <Modal
+          message="Are you sure you want to delete this user?"
+          onClose={() => setModal(false)}
+          onConfirm={handleDelete}
+        />
+      )}
     </div>
   );
 };

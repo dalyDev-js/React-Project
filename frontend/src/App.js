@@ -13,12 +13,14 @@ import VerifyngAccount from "./Pages/VerifyngAccount/VerifyngAccount";
 import Cart from "./Pages/Cart/Cart";
 import Wishlist from "./Pages/Wishlist/Wishlist";
 import SignOut from "./Pages/SignOut/SignOut";
+import "flowbite";
 import ProductDetails from "./Pages/ProductDetails/ProductDetails";
 import Checkout from "./Pages/Checkout/Checkout";
 import AdminDashboard from "./Pages/AdminDashboard/AdminDashboard";
 import Users from "./Pages/AdminDashboard/Users";
 import Carts from "./Pages/AdminDashboard/Carts";
 import Products from "./Pages/AdminDashboard/Products";
+import ProtectedRoute from "./utils/ProtectedRoute";
 
 function App() {
   return (
@@ -38,10 +40,13 @@ function App() {
           <Route path="/cart" Component={Cart} />
           <Route path="/checkout" Component={Checkout} />
           <Route path="/wishlist" Component={Wishlist} />
-          <Route path="/admin" Component={AdminDashboard}>
-            <Route path="users" Component={Users} />
-            <Route path="carts" Component={Carts} />
-            <Route path="products" Component={Products} />
+          <Route path="/protected" Component={ProtectedRoute} />
+          <Route Component={ProtectedRoute}>
+            <Route path="/admin" Component={AdminDashboard}>
+              <Route path="users" Component={Users} />
+              <Route path="carts" Component={Carts} />
+              <Route path="products" Component={Products} />
+            </Route>
           </Route>
           <Route path="*" Component={PageNotFound} />
         </Routes>
