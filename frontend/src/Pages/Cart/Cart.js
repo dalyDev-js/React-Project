@@ -14,7 +14,7 @@ function Cart() {
   const token = localStorage.getItem("token");
   const cartItems = useSelector((state) => state.cart.items);
   const [modal, setModal] = useState(false);
-
+  const [deletedItem, setDeletedItem] = useState(null);
   console.log(cartItems);
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -62,26 +62,15 @@ function Cart() {
       console.error("Failed to update quantity:", error.message);
     }
   };
+  const handleDeleteCartItem = async () => {
+    if (!deletedItem) return;
 
-  const handleOpenModal = (item) => {
-    setModal(true);
-    console.log(item);
-  };
-  const handleCloseModal = (item) => {
-    setModal(false);
-  };
-  const handleDeleteCartItem = async (item) => {
     try {
-      const response = await axios.delete(
-        `http://localhost:3001/cart/${item._id}`,
-        {
-          headers: {
-            token: token,
-          },
-        }
-      );
-      console.log(response);
-      dispatch(removeFromCart(item));
+      await axios.delete(`http://localhost:3001/cart/${deletedItem}`, {
+        headers: { token },
+      });
+      dispatch(removeFromCart(deletedItem));
+      setModal(false);
     } catch (error) {
       console.log(error.message);
     }
@@ -106,6 +95,11 @@ function Cart() {
   const totalPrice = calculateTotalPrice();
   const totalSavings = calculateTotalSavings();
   console.log(totalSavings);
+
+  const confirmDelete = (productId) => {
+    setDeletedItem(productId);
+    setModal(true);
+  };
   return (
     <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
       <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
@@ -116,7 +110,7 @@ function Cart() {
         <div class="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
           <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
             <div class="space-y-6">
-              {cartItems &&
+              {cartItems.length > 0 &&
                 cartItems.map((item) => (
                   /* card */
 
@@ -226,7 +220,7 @@ function Cart() {
 
                           {/* onClick={() => handleDeleteCartItem(item)} */}
                           <button
-                            onClick={() => handleOpenModal(item)}
+                            onClick={() => confirmDelete(item._id)}
                             type="button"
                             class="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500">
                             <svg
@@ -253,7 +247,7 @@ function Cart() {
                   </div>
                 ))}
             </div>
-            {!cartItems.products && <h1>No items added .</h1>}
+            {!cartItems.length > 0 && <h1>No items added .</h1>}
           </div>
 
           <div class="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
@@ -356,8 +350,9 @@ function Cart() {
       </div>
       {modal && (
         <Modal
-          onClose={handleCloseModal}
-          handleDeleteCartItem={handleDeleteCartItem}
+          onClose={() => setModal(false)}
+          onConfirm={handleDeleteCartItem}
+          message="Are you sure you want to delete this item from your cart?"
         />
       )}
     </section>

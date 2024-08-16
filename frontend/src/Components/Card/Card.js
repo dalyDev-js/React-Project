@@ -3,35 +3,33 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../Hooks/Redux/Slices/CartSlice";
 import axios from "axios";
-import { addToFavorites, removeFromFavorites } from "../../Hooks/Redux/Slices/WishlistSlice";
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from "../../Hooks/Redux/Slices/WishlistSlice";
 
 function Card({ product }) {
-  const wishlist = useSelector(state=>state.wishlist.fav)
+  const wishlist = useSelector((state) => state.wishlist.fav);
   const [added, setAdded] = useState(false);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
-  const [addedToFavorites, setAddedToFavorites] = useState(wishlist.some((item) => item.id === product.id));
-  
-  
-  
-useEffect(() => {
+  const [addedToFavorites, setAddedToFavorites] = useState(
+    wishlist.some((item) => item.id === product.id)
+  );
+
+  useEffect(() => {
     setAddedToFavorites(wishlist.some((item) => item.id === product.id));
   }, [wishlist, product.id]);
 
   function handleFav() {
     if (addedToFavorites) {
       dispatch(removeFromFavorites(product.id));
-      console.log('removed', product);
+      console.log("removed", product);
     } else {
       dispatch(addToFavorites(product));
-      
     }
     setAddedToFavorites(!addedToFavorites);
   }
-  
-
-
-
 
   const handleAddCart = async () => {
     const token = localStorage.getItem("token");
@@ -129,11 +127,11 @@ useEffect(() => {
               className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
               <span className="sr-only">Add to Favorites</span>
               <svg
-              onClick={()=>handleFav()}
+                onClick={() => handleFav()}
                 className="h-5 w-5"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
-                fill={addedToFavorites ? 'red' : 'none'}
+                fill={addedToFavorites ? "red" : "none"}
                 viewBox="0 0 24 24">
                 <path
                   stroke="currentColor"
