@@ -20,6 +20,7 @@ import Users from "./Pages/AdminDashboard/Users";
 import Carts from "./Pages/AdminDashboard/Carts";
 import Products from "./Pages/AdminDashboard/Products";
 import About from "./Pages/About/About";
+import './i18n';
 // import TopRated from "./Components/TopRated/TopRated";
 
 function App() {
