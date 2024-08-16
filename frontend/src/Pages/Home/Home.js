@@ -7,11 +7,11 @@ function Home() {
   return (
     <div>
       <Header />
-      <div>
-        <p  className="text-4xl m-5 font-semibold text-gray-900 mb-4 inline-block">
-          Top Rated
-        </p>
-      </div>
+
+      <p className="text-4xl text-center m-5 font-semibold text-gray-900 mb-4 inline-block">
+        Top Rated
+      </p>
+
       <TopRated />
     </div>
   );

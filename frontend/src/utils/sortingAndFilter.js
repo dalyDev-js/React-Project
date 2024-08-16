@@ -23,7 +23,7 @@ export const sortDefault = (products) => {
 export const filterCategory = (products, category) => {
   return category === "All Products"
     ? products
-    : products.filter((product) =>
-        product.category.toLowerCase().includes(category.toLowerCase())
+    : products.filter(
+        (product) => product.category.toLowerCase() === category.toLowerCase()
       );
 };

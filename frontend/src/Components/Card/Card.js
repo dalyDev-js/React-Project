@@ -66,18 +66,17 @@ function Card({ product }) {
   };
 
   return (
-    
     <div className="flex w-96 justfiy-item-center flex-wrap gap-3 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
       <div className="h-56 w-full">
         <Link to={`/details/${product._id}`}>
           <img
-            className="mx-auto h-full dark:hidden"
+            className=" mx-auto h-full "
             src={product.images[0]}
             alt={product.title}
           />
         </Link>
       </div>
-      <div className="pt-6">
+      <div className="pt-6 w-full">
         <div className="mb-4 flex items-center justify-between gap-4">
           <span className="me-2 rounded bg-blue-400 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
             Up to {product.discountPercentage}% off
@@ -90,26 +89,25 @@ function Card({ product }) {
               className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
               <span className="sr-only">Quick look</span>
               <Link to={`/details/${product._id}`}>
-              <svg
-               
-                className="h-5 w-5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24">
-                <path
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
-                />
-                <path
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                />
-              </svg>
+                <svg
+                  className="h-5 w-5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24">
+                  <path
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
+                  />
+                  <path
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                  />
+                </svg>
               </Link>
             </button>
             <div
@@ -166,9 +164,7 @@ function Card({ product }) {
               <svg
                 key={i}
                 className={`h-4 w-4 ${
-                  i < Math.round(product.rating)
-                    ? "text-yellow-400"
-                    : "text-gray-300"
+                  i < product.rating ? "text-yellow-400" : "text-gray-300"
                 }`}
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
@@ -182,7 +178,7 @@ function Card({ product }) {
             {product.rating}
           </p>
           <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-            ({`${(Math.random() * 600).toFixed()}`})
+            235
           </p>
         </div>
 
@@ -242,7 +238,6 @@ function Card({ product }) {
 
           <button
             onClick={handleAddCart}
-            disabled={added}
             className={`rounded-lg py-2 px-4 text-white ${
               added ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600"
             }`}>

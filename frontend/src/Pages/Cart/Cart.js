@@ -6,7 +6,7 @@ import {
   removeFromCart,
   updateCartItem,
 } from "../../Hooks/Redux/Slices/CartSlice";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Modal from "../../Components/Modal/Modal";
 
 function Cart() {
