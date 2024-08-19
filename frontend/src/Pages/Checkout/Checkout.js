@@ -5,6 +5,9 @@ import { getCartItems } from "../../Hooks/Redux/Slices/CartSlice";
 import axios from "axios";
 
 function Checkout() {
+
+  const translate = useSelector((state) => state.language.translation);
+
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
@@ -56,7 +59,7 @@ function Checkout() {
       <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
         <div class="mx-auto max-w-5xl">
           <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
-            Payment
+            {translate.payment}
           </h2>
 
           <div class="mt-6 sm:mt-8 lg:flex lg:items-start lg:gap-12">
@@ -69,7 +72,7 @@ function Checkout() {
                     for="full_name"
                     class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
                     {" "}
-                    Full name (as displayed on card)*{" "}
+                    {translate.fullname} ({translate.asdisplay})*{" "}
                   </label>
                   <input
                     type="text"
@@ -85,7 +88,7 @@ function Checkout() {
                     for="card-number-input"
                     class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
                     {" "}
-                    Card number*{" "}
+                    {translate.card}*{" "}
                   </label>
                   <input
                     type="text"
@@ -101,7 +104,7 @@ function Checkout() {
                   <label
                     for="card-expiration-input"
                     class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
-                    Card expiration*{" "}
+                    {translate.exp}*{" "}
                   </label>
                   <div class="relative">
                     <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3.5">
@@ -157,7 +160,7 @@ function Checkout() {
                       id="cvv-desc"
                       role="tooltip"
                       class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
-                      The last 3 digits on back of card
+                      {translate.cardBack}
                       <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
                   </label>
@@ -175,7 +178,7 @@ function Checkout() {
               <button
                 type="submit"
                 class="flex w-full items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4  focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                Pay now
+                {translate.Paynow}
               </button>
             </form>
 
@@ -184,7 +187,7 @@ function Checkout() {
                 <div class="space-y-2">
                   <dl class="flex items-center justify-between gap-4">
                     <dt class="text-base font-normal text-gray-500 dark:text-gray-400">
-                      Original price
+                      {translate.Oprice}
                     </dt>
                     <dd class="text-base font-medium text-gray-900 dark:text-white">
                       ${(totalPrice + totalSavings).toFixed(2)}
@@ -193,7 +196,7 @@ function Checkout() {
 
                   <dl class="flex items-center justify-between gap-4">
                     <dt class="text-base font-normal text-gray-500 dark:text-gray-400">
-                      Savings
+                      {translate.Savings}
                     </dt>
                     <dd class="text-base font-medium text-green-500">
                       -${totalSavings.toFixed(2)}
@@ -203,7 +206,7 @@ function Checkout() {
 
                 <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
                   <dt class="text-base font-bold text-gray-900 dark:text-white">
-                    Total
+                    {translate.Total}
                   </dt>
                   <dd class="text-base font-bold text-gray-900 dark:text-white">
                     ${totalPrice.toFixed(2)}
@@ -247,7 +250,7 @@ function Checkout() {
           </div>
 
           <p class="mt-6 text-center text-gray-500 dark:text-gray-400 sm:mt-8 lg:text-left">
-            Payment processed by{" "}
+            {translate.payproceed}{" "}
             <Link
               to="#"
               title=""

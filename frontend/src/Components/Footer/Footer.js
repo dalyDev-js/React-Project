@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 
 function Footer() {
+  const translate = useSelector((state) => state.language.translation);
   return (
     <div>
       <footer class="bg-white dark:bg-gray-900">
@@ -20,7 +23,7 @@ function Footer() {
 
               <div>
                 <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                  Follow us
+                  {translate.Follow}
                 </h2>
                 <ul class="text-gray-500 dark:text-gray-400 font-medium">
                   <li class="mb-4">
@@ -41,17 +44,17 @@ function Footer() {
               </div>
               <div>
                 <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                  Legal
+                  {translate.Legal}
                 </h2>
                 <ul class="text-gray-500 dark:text-gray-400 font-medium">
                   <li class="mb-4">
                     <Link to="#" class="hover:underline">
-                      Privacy Policy
+                      {translate.Privacy}
                     </Link>
                   </li>
                   <li>
                     <Link to="#" class="hover:underline">
-                      Terms &amp; Conditions
+                      {translate.Terms}
                     </Link>
                   </li>
                 </ul>
@@ -65,7 +68,7 @@ function Footer() {
               <Link to="#" class="hover:underline">
                 CairoCrafts™
               </Link>
-              . All Rights Reserved.
+              {translate.Rights}
             </span>
             <div class="flex mt-4 sm:justify-center sm:mt-0">
               <Link

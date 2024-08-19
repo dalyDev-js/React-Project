@@ -2,9 +2,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { addToFavorites } from "../../Hooks/Redux/Slices/WishlistSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function ProductDetails() {
+
+  const translate = useSelector((state) => state.language.translation);
+
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -144,7 +147,7 @@ function ProductDetails() {
                         d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
                       />
                     </svg>
-                    Add to favorites
+                    {translate.addtofav}
                   </button>}
 
                   <Link
@@ -168,7 +171,7 @@ function ProductDetails() {
                         d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"
                       />
                     </svg>
-                    Add to cart
+                    {translate.addtocart}
                   </Link>
                 </div>
 

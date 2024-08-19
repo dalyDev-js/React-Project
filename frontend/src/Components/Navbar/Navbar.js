@@ -5,9 +5,21 @@ import { Link, NavLink } from "react-router-dom";
 import { setToken } from "../../Hooks/Redux/Slices/TokenSlice";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
+import { setLanguage } from "../../Hooks/Redux/Slices/LanguageSlice";
 
 function Header() {
-  const {t} = useTranslation()
+  const translate = useSelector((state) => state.language.translation);
+  const language = useSelector((state) => state.language.myLang);
+  
+  console.log(language);
+
+  function changeToAR() {
+    dispatch(setLanguage("ar"));
+  }
+  function changeToEN() {
+    dispatch(setLanguage("en"));
+  }
+  const { t } = useTranslation();
   const [name, setName] = useState("");
   const token = useSelector((state) => state.token.token);
   const dispatch = useDispatch();
@@ -30,7 +42,8 @@ function Header() {
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <NavLink
             to={"/"}
-            className="flex justify-center items-center space-x-3 rtl:space-x-reverse">
+            className="flex justify-center items-center space-x-3 rtl:space-x-reverse"
+          >
             <img
               src="/assets/logo-no-background.png"
               className="h-12"
@@ -42,14 +55,16 @@ function Header() {
             type="button"
             className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
             aria-controls="navbar-dropdown"
-            aria-expanded="false">
+            aria-expanded="false"
+          >
             <span className="sr-only">Open main menu</span>
             <svg
               className="w-5 h-5"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
-              viewBox="0 0 17 14">
+              viewBox="0 0 17 14"
+            >
               <path
                 stroke="currentColor"
                 stroke-linecap="round"
@@ -61,28 +76,33 @@ function Header() {
           </button>
           <div
             className="hidden w-full md:block md:w-auto"
-            id="navbar-dropdown">
+            id="navbar-dropdown"
+          >
             <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
                 <NavLink
                   to="/"
                   className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent"
-                  aria-current="page">
-                  Home
+                  aria-current="page"
+                >
+                  {translate.Home}
                 </NavLink>
               </li>
               <li>
                 <button
                   id="dropdownNavbarLink"
                   data-dropdown-toggle="dropdownNavbar"
-                  className="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
-                  {t('Categories')}{""}
+                  className="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+                >
+                  {translate.Categories}
+                  {""}
                   <svg
                     className="w-2.5 h-2.5 ms-2.5"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
-                    viewBox="0 0 10 6">
+                    viewBox="0 0 10 6"
+                  >
                     <path
                       stroke="currentColor"
                       stroke-linecap="round"
@@ -94,30 +114,36 @@ function Header() {
                 </button>
                 <div
                   id="dropdownNavbar"
-                  className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                  className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+                >
                   <ul
                     className="py-2 text-sm text-gray-700 dark:text-gray-400"
-                    aria-labelledby="dropdownLargeButton">
+                    aria-labelledby="dropdownLargeButton"
+                  >
                     <li>
                       <NavLink
                         to="#"
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                        {t('Settings')}{""}
+                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        {t("Settings")}
+                        {""}
                       </NavLink>
                     </li>
                     <li>
                       <NavLink
                         to="#"
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                        {t('Earnings')}
+                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        {t("Earnings")}
                       </NavLink>
                     </li>
                   </ul>
                   <div className="py-1">
                     <NavLink
                       to="#"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                      {t('Sign out')}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                    >
+                      {translate.Signout}
                     </NavLink>
                   </div>
                 </div>
@@ -125,18 +151,19 @@ function Header() {
               <li>
                 <NavLink
                   to="/about"
-                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                  {t('About')}
+                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                >
+                  {translate.About}
                 </NavLink>
               </li>
               <li>
                 <NavLink
                   to="/products"
-                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                  {t('Shop')}
+                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                >
+                  {translate.Shop}
                 </NavLink>
               </li>
-
               <li>
                 <NavLink to="wishlist" className="flex">
                   <svg
@@ -146,7 +173,8 @@ function Header() {
                     width="24"
                     height="24"
                     fill="currentColor"
-                    viewBox="0 0 24 24">
+                    viewBox="0 0 24 24"
+                  >
                     <path d="m12.75 20.66 6.184-7.098c2.677-2.884 2.559-6.506.754-8.705-.898-1.095-2.206-1.816-3.72-1.855-1.293-.034-2.652.43-3.963 1.442-1.315-1.012-2.678-1.476-3.973-1.442-1.515.04-2.825.76-3.724 1.855-1.806 2.201-1.915 5.823.772 8.706l6.183 7.097c.19.216.46.34.743.34a.985.985 0 0 0 .743-.34Z" />
                   </svg>
                   <span>({favoritesCount})</span>
@@ -161,7 +189,8 @@ function Header() {
                     width="24"
                     height="24"
                     fill="currentColor"
-                    viewBox="0 0 24 24">
+                    viewBox="0 0 24 24"
+                  >
                     <path
                       fill-rule="evenodd"
                       d="M4 4a1 1 0 0 1 1-1h1.5a1 1 0 0 1 .979.796L7.939 6H19a1 1 0 0 1 .979 1.204l-1.25 6a1 1 0 0 1-.979.796H9.605l.208 1H17a3 3 0 1 1-2.83 2h-2.34a3 3 0 1 1-4.009-1.76L5.686 5H5a1 1 0 0 1-1-1Z"
@@ -171,7 +200,13 @@ function Header() {
                   <span>({cartCount})</span>
                 </NavLink>
               </li>
-              <LanguageSwitcher/>
+              <div>
+                {language === "ar" ? (
+                  <button onClick={() => changeToEN()}>EN</button>
+                ) : (
+                  <button onClick={() => changeToAR()}>العربية</button>
+                )}
+              </div>{" "}
               <li>
                 {!token ? (
                   <NavLink to="/signin">
@@ -182,7 +217,8 @@ function Header() {
                       width="24"
                       height="24"
                       fill="currentColor"
-                      viewBox="0 0 24 24">
+                      viewBox="0 0 24 24"
+                    >
                       <path
                         fill-rule="evenodd"
                         d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
@@ -196,14 +232,16 @@ function Header() {
                       id="dropdownDividerButton"
                       data-dropdown-toggle="dropdownDivider"
                       class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                      type="button">
-                      {t('Welcome')}, {name}
+                      type="button"
+                    >
+                      {translate.Welcome}, {name}
                       <svg
                         class="w-2.5 h-2.5 ms-3"
                         aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
-                        viewBox="0 0 10 6">
+                        viewBox="0 0 10 6"
+                      >
                         <path
                           stroke="currentColor"
                           stroke-linecap="round"
@@ -215,23 +253,27 @@ function Header() {
                     </button>
                     <div
                       id="dropdownDivider"
-                      class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                      class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+                    >
                       <ul
                         class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                        aria-labelledby="dropdownDividerButton">
+                        aria-labelledby="dropdownDividerButton"
+                      >
                         <li>
                           <Link
                             to="/cart"
-                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                            {t('Cart')}
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >
+                            {translate.Cart}
                           </Link>
                         </li>
                       </ul>
                       <div class="py-2">
                         <Link
                           to={"/signout"}
-                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                          {t('Sign Out')}
+                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                        >
+                          {translate.Signout}
                         </Link>
                       </div>
                     </div>

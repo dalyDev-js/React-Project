@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { validateForm } from "../../utils/ValidateField";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 function SignUp() {
+  const translate = useSelector((state) => state.language.translation);
+
   const [error, setError] = useState({});
   const [loading, setLoading] = useState(false);
   const [banner, setBanner] = useState(false);
@@ -107,7 +110,7 @@ function SignUp() {
         onSubmit={handleSubmit}
         class="signin-box  w-full max-w-xl p-4 bg-white border m-10  border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
         <h1 class="mb-4 text-4xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
-          Sign up to CairoCrafts
+          {translate.h1signup}
         </h1>
         {error.general && (
           <div className="mb-4 text-red-600 text-center">{error.general}</div>
@@ -116,7 +119,7 @@ function SignUp() {
           <label
             for="email"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-            Your name
+            {translate.YourName}
           </label>
           <input
             value={formData.name}
@@ -141,7 +144,7 @@ function SignUp() {
           <label
             for="email"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-            Your email
+            {translate.Email}
           </label>
           <input
             type="email"
@@ -166,7 +169,7 @@ function SignUp() {
           <label
             for="password"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-            Your password
+            {translate.Password}
           </label>
           <input
             type="password"
@@ -194,7 +197,7 @@ function SignUp() {
           <label
             for="repeat-password"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-            Repeat password
+            {translate.Repeat}
           </label>
           <input
             type="password"
@@ -234,7 +237,7 @@ function SignUp() {
             <Link
               to="/terms"
               class="text-blue-600 hover:underline dark:text-blue-500">
-              terms and conditions
+              {translate.Terms}
             </Link>
           </label>
         </div>

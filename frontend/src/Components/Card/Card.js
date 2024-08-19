@@ -9,6 +9,8 @@ import {
 } from "../../Hooks/Redux/Slices/WishlistSlice";
 
 function Card({ product }) {
+  const translate = useSelector((state) => state.language.translation);
+
   const wishlist = useSelector((state) => state.wishlist.fav);
   const [added, setAdded] = useState(false);
   const dispatch = useDispatch();
@@ -66,7 +68,6 @@ function Card({ product }) {
   };
 
   return (
-    
     <div className="flex w-96 justfiy-item-center flex-wrap gap-3 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
       <div className="h-56 w-full">
         <Link to={`/details/${product._id}`}>
@@ -87,52 +88,56 @@ function Card({ product }) {
             <button
               type="button"
               data-tooltip-target="tooltip-quick-look"
-              className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+              className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            >
               <span className="sr-only">Quick look</span>
               <Link to={`/details/${product._id}`}>
-              <svg
-               
-                className="h-5 w-5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24">
-                <path
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
-                />
-                <path
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                />
-              </svg>
+                <svg
+                  className="h-5 w-5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
+                  />
+                  <path
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                  />
+                </svg>
               </Link>
             </button>
             <div
               id="tooltip-quick-look"
               role="tooltip"
               className="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
-              data-popper-placement="top">
-              Quick look
+              data-popper-placement="top"
+            >
+              {translate.quick}
               <div className="tooltip-arrow" data-popper-arrow=""></div>
             </div>
 
             <button
               type="button"
               data-tooltip-target="tooltip-add-to-favorites"
-              className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-              <span className="sr-only">Add to Favorites</span>
+              className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            >
+              <span className="sr-only">{translate.addtofav}</span>
               <svg
                 onClick={() => handleFav()}
                 className="h-5 w-5"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill={addedToFavorites ? "red" : "none"}
-                viewBox="0 0 24 24">
+                viewBox="0 0 24 24"
+              >
                 <path
                   stroke="currentColor"
                   strokeLinecap="round"
@@ -146,8 +151,9 @@ function Card({ product }) {
               id="tooltip-add-to-favorites"
               role="tooltip"
               className="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
-              data-popper-placement="top">
-              Add to favorites
+              data-popper-placement="top"
+            >
+              {translate.addtofav}
               <div className="tooltip-arrow" data-popper-arrow=""></div>
             </div>
           </div>
@@ -155,7 +161,8 @@ function Card({ product }) {
 
         <Link
           to="#"
-          className="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">
+          className="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white"
+        >
           {product.title}
         </Link>
 
@@ -173,7 +180,8 @@ function Card({ product }) {
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
-                viewBox="0 0 24 24">
+                viewBox="0 0 24 24"
+              >
                 <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
               </svg>
             ))}
@@ -193,7 +201,8 @@ function Card({ product }) {
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
-              viewBox="0 0 24 24">
+              viewBox="0 0 24 24"
+            >
               <path
                 stroke="currentColor"
                 strokeLinecap="round"
@@ -213,7 +222,8 @@ function Card({ product }) {
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
-              viewBox="0 0 24 24">
+              viewBox="0 0 24 24"
+            >
               <path
                 stroke="currentColor"
                 strokeLinecap="round"
@@ -245,7 +255,8 @@ function Card({ product }) {
             disabled={added}
             className={`rounded-lg py-2 px-4 text-white ${
               added ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600"
-            }`}>
+            }`}
+          >
             {added ? "Added" : "Add to Cart"}
           </button>
         </div>
