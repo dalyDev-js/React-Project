@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { removeFromFavorites } from "../../Hooks/Redux/Slices/WishlistSlice";
 
 function Wishlist() {
+  const translate = useSelector((state) => state.language.translation);
+
   const dispatch = useDispatch();
   const wishlist = useSelector((state) => state.wishlist.fav);
   console.log(wishlist);
@@ -34,7 +36,7 @@ function Wishlist() {
               to={`/details/${product._id}`}
               class="inline-flex me-7 items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               {" "}
-              Read more
+              {translate.Read}
               <svg
                 class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
                 aria-hidden="true"

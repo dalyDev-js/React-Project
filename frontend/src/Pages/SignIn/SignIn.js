@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setToken } from "../../Hooks/Redux/Slices/TokenSlice";
 function SignIn() {
+  const translate = useSelector((state) => state.language.translation);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -61,14 +63,14 @@ function SignIn() {
       <div className="signin-box w-full max-w-2xl bg-white border m-10 p-5 border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
         <form className="space-y-6" onSubmit={handleSubmit}>
           <h1 className="mb-4 text-4xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
-            Sign in to CairoCrafts
+            {translate.h1}
           </h1>
 
           <div>
             <label
               htmlFor="email"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Your email
+              {translate.Email}
             </label>
             <input
               type="email"
@@ -84,7 +86,7 @@ function SignIn() {
             <label
               htmlFor="password"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Your password
+              {translate.Password}
             </label>
             <input
               type="password"
@@ -109,13 +111,13 @@ function SignIn() {
               <label
                 htmlFor="remember"
                 className="ms-2 text-sm font-medium text-black dark:text-gray-300">
-                Remember me
+                {translate.Remember}
               </label>
             </div>
             <Link
               to="#"
               className="ms-auto text-sm text-blue-800 font-bold hover:underline dark:text-blue-500">
-              Forgot Password?
+              {translate.Forget}
             </Link>
           </div>
           {loading ? (
@@ -146,17 +148,17 @@ function SignIn() {
             <button
               type="submit"
               className="w-full text-white bg-blue-600 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-              Sign in
+              {translate.Signin}
             </button>
           )}
 
           {error && <p className="text-red-500 text-center">{error}</p>}
           <div className="text-sm font-medium text-black dark:text-gray-300">
-            Not registered?{" "}
+            {translate.notRegister}{" "}
             <Link
               to={"/signup"}
               className="text-blue-800 hover:underline dark:text-blue-500">
-              Create account
+              {translate.Register}
             </Link>
           </div>
         </form>

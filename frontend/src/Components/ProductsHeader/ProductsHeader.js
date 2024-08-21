@@ -12,6 +12,8 @@ import {
 import { setCategory } from "../../Hooks/Redux/Slices/Category";
 
 function ProductsHeader({ products, onSort, onFilter }) {
+  const translate = useSelector((state) => state.language.translation);
+
   const [sortDropDown, setSortDropDown] = useState(false);
   const [filterDropDown, setFilterDropDown] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All Products");
@@ -59,16 +61,18 @@ function ProductsHeader({ products, onSort, onFilter }) {
             <li className="inline-flex items-center">
               <Link
                 to="#"
-                className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
+              >
                 <svg
                   className="me-2.5 h-3 w-3"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
-                  viewBox="0 0 20 20">
+                  viewBox="0 0 20 20"
+                >
                   <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
                 </svg>
-                Home
+                {translate.Home}
               </Link>
             </li>
 
@@ -81,7 +85,8 @@ function ProductsHeader({ products, onSort, onFilter }) {
                   width="24"
                   height="24"
                   fill="none"
-                  viewBox="0 0 24 24">
+                  viewBox="0 0 24 24"
+                >
                   <path
                     stroke="currentColor"
                     stroke-linecap="round"
@@ -144,7 +149,8 @@ function ProductsHeader({ products, onSort, onFilter }) {
         <button
           onClick={() => toggleFilterDropDown()}
           type="button"
-          className="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto">
+          className="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto"
+        >
           <svg
             className="-ms-0.5 me-2 h-4 w-4"
             aria-hidden="true"
@@ -152,7 +158,8 @@ function ProductsHeader({ products, onSort, onFilter }) {
             width="24"
             height="24"
             fill="none"
-            viewBox="0 0 24 24">
+            viewBox="0 0 24 24"
+          >
             <path
               stroke="currentColor"
               stroke-linecap="round"
@@ -166,7 +173,8 @@ function ProductsHeader({ products, onSort, onFilter }) {
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
-            viewBox="0 0 24 24">
+            viewBox="0 0 24 24"
+          >
             <path
               stroke="currentColor"
               stroke-linecap="round"
@@ -181,15 +189,17 @@ function ProductsHeader({ products, onSort, onFilter }) {
               <li>
                 <button
                   onClick={() => handleFilter("All Products")}
-                  className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">
-                  All Products
+                  className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                  {translate.AllProducts}
                 </button>
               </li>
               {categories.map((category) => (
                 <li key={category}>
                   <button
                     onClick={() => handleFilter(category)}
-                    className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">
+                    className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                  >
                     {category}
                   </button>
                 </li>
@@ -201,14 +211,16 @@ function ProductsHeader({ products, onSort, onFilter }) {
         <button
           onClick={() => toggleSortDropDown()}
           type="button"
-          className="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto">
-          Sort by
+          className="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto"
+        >
+          {translate.Sort}
           <svg
             className="ms-2 h-3 w-3"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
-            viewBox="0 0 24 24">
+            viewBox="0 0 24 24"
+          >
             <path
               stroke="currentColor"
               stroke-linecap="round"
@@ -223,36 +235,41 @@ function ProductsHeader({ products, onSort, onFilter }) {
               <li>
                 <button
                   onClick={() => handleSort(sortDefault)}
-                  className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">
-                  Default
+                  className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                  {translate.Default}
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => handleSort(sortProductsByPriceLH)}
-                  className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">
-                  Price (Low to High)
+                  className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                  {translate.PriceLow}
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => handleSort(sortProductsByPriceHL)}
-                  className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">
-                  Price (High to Low)
+                  className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                  {translate.PriceHigh}
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => handleSort(sortProductsByRating)}
-                  className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">
-                  Rating
+                  className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                  {translate.Rating}
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => handleSort(sortProductsByDiscount)}
-                  className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">
-                  Discount
+                  className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                  >
+                  {translate.Discount}
                 </button>
               </li>
             </ul>
