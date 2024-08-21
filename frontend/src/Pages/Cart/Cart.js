@@ -10,9 +10,11 @@ import { Link } from "react-router-dom";
 import Modal from "../../Components/Modal/Modal";
 
 function Cart() {
+  const translate = useSelector((state) => state.language.translation);
+  const cartItems = useSelector((state) => state.cart.items);
+
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
-  const cartItems = useSelector((state) => state.cart.items);
   const [modal, setModal] = useState(false);
   const [deletedItem, setDeletedItem] = useState(null);
   console.log(cartItems);
@@ -104,7 +106,7 @@ function Cart() {
     <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
       <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
         <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
-          Shopping Cart
+          {translate.Cart}
         </h2>
 
         <div class="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
@@ -125,7 +127,7 @@ function Cart() {
                       </Link>
 
                       <label for="counter-input" class="sr-only">
-                        Choose quantity:
+                        {translate.Quantity}
                       </label>
                       <div class="flex items-center justify-between md:order-3 md:justify-end">
                         <div class="flex items-center">
@@ -215,7 +217,7 @@ function Cart() {
                                 d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
                               />
                             </svg>
-                            Add to Favorites
+                            {translate.Favorite}
                           </button>
 
                           {/* onClick={() => handleDeleteCartItem(item)} */}
@@ -239,7 +241,7 @@ function Cart() {
                                 d="M6 18 17.94 6M18 18 6.06 6"
                               />
                             </svg>
-                            Remove
+                            {translate.Remove}
                           </button>
                         </div>
                       </div>
@@ -253,14 +255,14 @@ function Cart() {
           <div class="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
             <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
               <p class="text-xl font-semibold text-gray-900 dark:text-white">
-                Order summary
+                {translate.Summary}
               </p>
 
               <div class="space-y-4">
                 <div class="space-y-2">
                   <dl class="flex items-center justify-between gap-4">
                     <dt class="text-base font-normal text-gray-500 dark:text-gray-400">
-                      Original price
+                      {translate.Oprice}
                     </dt>
                     <dd class="text-base font-medium text-gray-900 dark:text-white">
                       ${(totalPrice + totalSavings).toFixed(2)}
@@ -269,7 +271,7 @@ function Cart() {
 
                   <dl class="flex items-center justify-between gap-4">
                     <dt class="text-base font-normal text-gray-500 dark:text-gray-400">
-                      Savings
+                      {translate.Savings}
                     </dt>
                     <dd class="text-base font-medium text-green-600">
                       -${totalSavings.toFixed(2)}
@@ -279,7 +281,7 @@ function Cart() {
 
                 <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
                   <dt class="text-base font-bold text-gray-900 dark:text-white">
-                    Total
+                    {translate.Total}
                   </dt>
                   <dd class="text-base font-bold text-gray-900 dark:text-white">
                     ${totalPrice.toFixed(2)}
@@ -288,21 +290,21 @@ function Cart() {
               </div>
 
               <Link
-                to="#"
-                class="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                Proceed to Checkout
+                to="/checkout"
+                class="flex w-full items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                {translate.Checkout}
               </Link>
 
               <div class="flex items-center justify-center gap-2">
                 <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
                   {" "}
-                  or{" "}
+                  {translate.or}{" "}
                 </span>
                 <Link
                   to="/products"
                   title=""
-                  class="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">
-                  Continue Shopping
+                  class="inline-flex items-center gap-2 text-sm font-medium text-blue-700 underline hover:no-underline dark:text-blue-500">
+                  {translate.Continue}
                   <svg
                     class="h-5 w-5"
                     aria-hidden="true"
@@ -328,20 +330,20 @@ function Cart() {
                     for="voucher"
                     class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
                     {" "}
-                    Do you have Link voucher or gift card?{" "}
+                    {translate.Voucher}{" "}
                   </label>
                   <input
                     type="text"
                     id="voucher"
-                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                     placeholder=""
                     required
                   />
                 </div>
                 <button
                   type="submit"
-                  class="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                  Apply Code
+                  class="flex w-full items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                  {translate.code}
                 </button>
               </form>
             </div>

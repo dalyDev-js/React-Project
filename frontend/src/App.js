@@ -22,12 +22,12 @@ import Carts from "./Pages/AdminDashboard/Carts";
 import Products from "./Pages/AdminDashboard/Products";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import About from "./Pages/About/About";
-import LanguageSwitcher from "./Components/LanguageSwitcher/LanguageSwitcher";
-// import TopRated from "./Components/TopRated/TopRated";
+import { useSelector } from "react-redux";
 
 function App() {
+  const language = useSelector((state) => state.language.myLang);
   return (
-    <div className="App">
+    <div className="App" dir={language === "ar" ? "rtl" : "ltr"}>
       <BrowserRouter>
         <Header />
         <Routes>
@@ -44,7 +44,6 @@ function App() {
           <Route path="/about" Component={About} />
           <Route path="/checkout" Component={Checkout} />
           <Route path="/wishlist" Component={Wishlist} />
-          <Route path="/lang" Component={LanguageSwitcher} />
           <Route path="/protected" Component={ProtectedRoute} />
           <Route Component={ProtectedRoute}>
             <Route path="/admin" Component={AdminDashboard}>

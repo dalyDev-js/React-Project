@@ -4,17 +4,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { setToken } from "../../Hooks/Redux/Slices/TokenSlice";
 import { DarkMode } from "../DarkMode/DarkMode";
+import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
+import { setLanguage } from "../../Hooks/Redux/Slices/LanguageSlice";
 
 function Header() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const translate = useSelector((state) => state.language.translation);
+  const language = useSelector((state) => state.language.myLang);
+
+  console.log(language);
+
+  function changeToAR() {
+    dispatch(setLanguage("ar"));
+  }
+  function changeToEN() {
+    dispatch(setLanguage("en"));
+  }
+
   const [name, setName] = useState("");
   const token = useSelector((state) => state.token.token);
   const [animateFavorites, setAnimateFavorites] = useState(false);
   const [animateCart, setAnimateCart] = useState(false);
   const dispatch = useDispatch();
-  const categories = useSelector((state) => state.categories.categories);
+
   const favoritesCount = useSelector((state) => state.wishlist.fav.length);
   const cartCount = useSelector((state) => state.cart.items.length);
+  const [searchTerm, setSearchTerm] = useState("");
+  const categories = useSelector((state) => state.categories.categories);
   const navigate = useNavigate();
   useEffect(() => {
     const storedToken = localStorage.getItem("token", token);
@@ -46,6 +61,7 @@ function Header() {
   return (
     <div>
       <nav className="fixed- bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700 ">
+        {" "}
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <NavLink
             to={"/"}
@@ -87,7 +103,7 @@ function Header() {
                   to="/"
                   className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent"
                   aria-current="page">
-                  Home
+                  {translate.Home}
                 </NavLink>
               </li>
               <li>
@@ -95,7 +111,8 @@ function Header() {
                   id="dropdownNavbarLink"
                   data-dropdown-toggle="dropdownNavbar"
                   className="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
-                  Categories{" "}
+                  {translate.Categories}
+                  {""}
                   <svg
                     className="w-2.5 h-2.5 ms-2.5"
                     aria-hidden="true"
@@ -133,17 +150,16 @@ function Header() {
                 <NavLink
                   to="/about"
                   className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                  About
+                  {translate.About}
                 </NavLink>
               </li>
               <li>
                 <NavLink
                   to="/products"
                   className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                  Shop
+                  {translate.Shop}
                 </NavLink>
               </li>
-
               <li>
                 <NavLink
                   to="wishlist"
@@ -158,13 +174,14 @@ function Header() {
                     viewBox="0 0 24 24">
                     <path d="m12.75 20.66 6.184-7.098c2.677-2.884 2.559-6.506.754-8.705-.898-1.095-2.206-1.816-3.72-1.855-1.293-.034-2.652.43-3.963 1.442-1.315-1.012-2.678-1.476-3.973-1.442-1.515.04-2.825.76-3.724 1.855-1.806 2.201-1.915 5.823.772 8.706l6.183 7.097c.19.216.46.34.743.34a.985.985 0 0 0 .743-.34Z" />
                   </svg>
-                  <span className="dark:text-white">{favoritesCount}</span>
+                  <span className="dark:text-white">{favoritesCount}</span>{" "}
                 </NavLink>
               </li>
               <li>
                 <NavLink
                   to="cart"
                   className={`flex ${animateCart ? "pop-out" : ""}`}>
+                  {" "}
                   <svg
                     className="w-6 h-6 text-gray-800 dark:text-white"
                     aria-hidden="true"
@@ -182,6 +199,13 @@ function Header() {
                   <span className="dark:text-white">{cartCount}</span>
                 </NavLink>
               </li>
+              <div>
+                {language === "ar" ? (
+                  <button onClick={() => changeToEN()}>EN</button>
+                ) : (
+                  <button onClick={() => changeToAR()}>العربية</button>
+                )}
+              </div>{" "}
               <li>
                 {!token ? (
                   <NavLink to="/signin">
@@ -207,7 +231,7 @@ function Header() {
                       data-dropdown-toggle="dropdownDivider"
                       class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                       type="button">
-                      Welcome, {name}
+                      {translate.Welcome}, {name}
                       <svg
                         class="w-2.5 h-2.5 ms-3"
                         aria-hidden="true"
@@ -233,7 +257,7 @@ function Header() {
                           <Link
                             to="/cart"
                             class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                            Cart
+                            {translate.Cart}
                           </Link>
                         </li>
                       </ul>
@@ -241,7 +265,7 @@ function Header() {
                         <Link
                           to={"/signout"}
                           class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                          Sign Out
+                          {translate.Signout}
                         </Link>
                       </div>
                     </div>

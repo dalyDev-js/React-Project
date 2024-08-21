@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -12,6 +12,8 @@ import {
 import { setCategory } from "../../Hooks/Redux/Slices/Category";
 
 function ProductsHeader({ products, onSort, onFilter }) {
+  const translate = useSelector((state) => state.language.translation);
+
   const [sortDropDown, setSortDropDown] = useState(false);
   const [filterDropDown, setFilterDropDown] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All Products");
@@ -19,17 +21,6 @@ function ProductsHeader({ products, onSort, onFilter }) {
   const categories = useSelector((state) => state.categories.categories);
   const dispatch = useDispatch();
 
-  const location = useLocation();
-  useEffect(() => {
-    const query = new URLSearchParams(location.search);
-    const category = query.get("category") || "All Products";
-    setSelectedCategory(category);
-    onFilter(
-      category === "All Products"
-        ? products
-        : products.filter((p) => p.category === category)
-    );
-  }, [location.search, products, onFilter]);
   // Handle Sorting
   const handleSort = (sortFunction) => {
     const sortedProducts = sortFunction(products);
@@ -80,7 +71,7 @@ function ProductsHeader({ products, onSort, onFilter }) {
                   viewBox="0 0 20 20">
                   <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
                 </svg>
-                Home
+                {translate.Home}
               </Link>
             </li>
 
@@ -113,7 +104,6 @@ function ProductsHeader({ products, onSort, onFilter }) {
           {selectedCategory}
         </h2>
       </div>
-
       <form class="sm:w-52 lg:w-96 md:w-52 mx-auto" onSubmit={handleSearch}>
         <label
           for="default-search"
@@ -195,7 +185,7 @@ function ProductsHeader({ products, onSort, onFilter }) {
                 <button
                   onClick={() => handleFilter("All Products")}
                   className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">
-                  All Products
+                  {translate.AllProducts}
                 </button>
               </li>
               {categories.map((category) => (
@@ -215,7 +205,7 @@ function ProductsHeader({ products, onSort, onFilter }) {
           onClick={() => toggleSortDropDown()}
           type="button"
           className="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto">
-          Sort by
+          {translate.Sort}
           <svg
             className="ms-2 h-3 w-3"
             aria-hidden="true"
@@ -237,35 +227,35 @@ function ProductsHeader({ products, onSort, onFilter }) {
                 <button
                   onClick={() => handleSort(sortDefault)}
                   className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">
-                  Default
+                  {translate.Default}
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => handleSort(sortProductsByPriceLH)}
                   className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">
-                  Price (Low to High)
+                  {translate.PriceLow}
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => handleSort(sortProductsByPriceHL)}
                   className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">
-                  Price (High to Low)
+                  {translate.PriceHigh}
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => handleSort(sortProductsByRating)}
                   className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">
-                  Rating
+                  {translate.Rating}
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => handleSort(sortProductsByDiscount)}
                   className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">
-                  Discount
+                  {translate.Discount}
                 </button>
               </li>
             </ul>

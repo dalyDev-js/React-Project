@@ -78,6 +78,7 @@ const Products = () => {
   };
 
   const handleEdit = (product) => {
+    console.log(product);
     setEditingProduct(product);
     setForm({
       title: product.title,
