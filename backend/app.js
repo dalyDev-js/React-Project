@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(productRoutes);
 app.use(userRoutes);
 app.use(cartRoutes);
-
+app.get("/", (req, res) => res.send("Hello World!"));
 app.use("*", (req, res, next) => {
   next(new AppError("URL NOT FOUND", 404));
 });
@@ -23,6 +23,6 @@ app.use((err, req, res, next) => {
   res.status(err.statusCode).json({ message: err.message });
 });
 
-app.get("/", (req, res) => res.send("Hello World!"));
+
 
 app.listen(port, () => console.log("listening on port ", port));
