@@ -8,17 +8,18 @@ import cartRoutes from "./src/routes/cart.routes.js";
 
 // CORS configuration
 const corsOptions = {
-  origin: "http://localhost:3000", 
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true, // Allows cookies and other credentials to be sent
-  optionsSuccessStatus: 200, // Ensures legacy browsers can handle CORS
+  origin: ["http://localhost:3000", "https://react-project-production-5a86.up.railway.app"], // Your frontend URLs
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allow all necessary HTTP methods
+  credentials: true, // Allow cookies and credentials to be passed
+  allowedHeaders: ["Content-Type", "Authorization"], // Allow necessary headers
+  optionsSuccessStatus: 200, // Response status for successful OPTIONS requests
 };
 
 const app = express();
 const port = process.env.PORT || 3001;
-
-// Apply CORS middleware
 app.use(cors(corsOptions));
+// Apply CORS middleware
+app.options("*", cors(corsOptions));
 
 dbConnect();
 
