@@ -8,7 +8,7 @@ import cartRoutes from "./src/routes/cart.routes.js";
 
 // CORS configuration
 const corsOptions = {
-  origin: ["http://localhost:3000", "https://react-project-production-5a86.up.railway.app"], // Add both localhost and production frontend URLs
+  origin: "http://localhost:3000", 
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true, // Allows cookies and other credentials to be sent
   optionsSuccessStatus: 200, // Ensures legacy browsers can handle CORS
