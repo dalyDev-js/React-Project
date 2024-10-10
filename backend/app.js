@@ -7,21 +7,14 @@ import AppError from "./src/utils/appError.js";
 import cartRoutes from "./src/routes/cart.routes.js";
 
  
-
+const corsOptions = {
+  origin: ["http://localhost:3000", "https://your-production-frontend.com"], // Add your frontend URLs here
+  credentials: true, // If you are using cookies or authentication tokens
+};
 const app = express();
 const port = process.env.PORT || 3001;
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000"); // Allow local frontend
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"); // Allow all required methods
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization"); // Allow necessary headers
-  res.setHeader("Access-Control-Allow-Credentials", "true"); // Allow credentials
-  if (req.method === "OPTIONS") {
-    // Handle preflight request
-    return res.sendStatus(204); // Preflight checks are fine, return no content
-  }
-  next();
-});
-
+ 
+app.use(cors(corsOptions));
 dbConnect();
 
 // Middleware to parse JSON
