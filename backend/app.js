@@ -6,9 +6,13 @@ import userRoutes from "./src/routes/user.routes.js";
 import AppError from "./src/utils/appError.js";
 import cartRoutes from "./src/routes/cart.routes.js";
 
+const corsOptions = {
+  origin: ["http://localhost:3000", "https://your-production-frontend.com"],  
+  credentials: true,  
+};
 const app = express();
 const port = 3001;
-app.use(cors());
+app.use(cors(corsOptions));
 dbConnect();
 app.use(express.json());
 app.use(productRoutes);
