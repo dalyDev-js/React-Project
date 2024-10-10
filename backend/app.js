@@ -10,14 +10,14 @@ import cartRoutes from "./src/routes/cart.routes.js";
 
 const app = express();
 const port = process.env.PORT || 3001;
- app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.header("Access-Control-Allow-Credentials", "true");
-  // If it's an OPTIONS request, return early
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000"); // Allow local frontend
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"); // Allow all required methods
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization"); // Allow necessary headers
+  res.setHeader("Access-Control-Allow-Credentials", "true"); // Allow credentials
   if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
+    // Handle preflight request
+    return res.sendStatus(204); // Preflight checks are fine, return no content
   }
   next();
 });
